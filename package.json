@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "proyecto-2",
   "version": "1.0.0",
   "description": "Second Project of the Bootcamp of Programming and coding in Spain.",
@@ -15,6 +16,7 @@
     "express": "^4.18.2",
     "joi": "^17.11.0",
     "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
     "mysql2": "^3.6.5"
   }
 }
