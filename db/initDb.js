@@ -55,7 +55,7 @@ const main = async () => {
         `);
 
 
-        console.log('¡Tablas creadas con éxito!');
+        console.log('¡Tablas creadas con éxito!⚡');
     } catch (err) {
         console.error(err);
     } finally {
