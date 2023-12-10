@@ -2,7 +2,10 @@
   "name": "hab",
   "description": "segundoProyecto",
   "main": "app.js",
-  
+    "type": "module",
+    "scripts": {
+      "dev": "nodemon app.js"
+    },
   "dependencies": {
     "axios": "^1.6.2",
     "cors": "^2.8.5",
@@ -12,5 +15,8 @@
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.6.5",
     "yes": "^1.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
   }
 }
