@@ -16,6 +16,13 @@ import {
     deleteFileController,
 } from './controllers/files.js' //Importamos controladores de files.js
 
+import {
+    getFoldersController,
+    newFolderController,
+    getSingleFolderController,
+    deleteFolderController,
+} from './controllers/folders.js' //Importamos controladores de folders.js
+
 
 
 dotenv.config();
@@ -23,7 +30,8 @@ dotenv.config();
 
 const app = express();
 
-app.use(morgan('dev'))
+app.use(express.json()); //Middleware que trata de procesar las peticiones a formato JSON
+app.use(morgan('dev')) //Middleware de Gestión de Peticiones
 
 
 
@@ -37,6 +45,12 @@ app.get('/', getFilesController);
 app.post('/', newFileController);
 app.get('/file/:id', getSingleFileController);
 app.delete('/file/:id', deleteFileController);
+
+//RUTAS DE FOLDERS
+app.get('/', getFoldersController);
+app.post('/', newFolderController);
+app.get('/folder/:id', getSingleFolderController);
+app.delete('/folder/:id', deleteFolderController);
 
 
 

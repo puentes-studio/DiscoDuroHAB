@@ -20,8 +20,9 @@ const main = async () => {
         await pool.query(`
             CREATE TABLE IF NOT EXISTS Users (
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                password VARCHAR(100) NOT NULL,
+                user_name VARCHAR(20) NOT NULL UNIQUE,
                 email VARCHAR(100) NOT NULL UNIQUE,
+                password VARCHAR(100) NOT NULL,
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP
             )
         `);
