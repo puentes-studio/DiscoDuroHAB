@@ -1,25 +1,44 @@
+//IMPORTACIONES
 import express from 'express';
-import cors from 'cors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
-import fileUpload from 'express-fileupload';
+
+import {
+    newUserController,
+    getUserController,
+    loginController,
+} from './controllers/users.js' //Importamos controladores de users.js
+
+import {
+    getFilesController,
+    newFileController,
+    getSingleFileController,
+    deleteFileController,
+} from './controllers/files.js' //Importamos controladores de files.js
+
+
 
 dotenv.config();
 
 
 const app = express();
 
-app.use(morgan('dev'));
-app.use(cors());
-app.use(express.json());
-app.use(fileUpload());
-app.use(routes);
-app.use(errorController);
-app.use(express.static('public')); //DARLE UNA VUELTA A ESTO
+app.use(morgan('dev'))
 
 
 
-//RUTAS
+//RUTAS DE USUARIO
+app.post('/users', newUserController);
+app.get('/users:id', getUserController);
+app.post('/login', loginController);
+
+//RUTAS DE FILES
+app.get('/', getFilesController);
+app.post('/', newFileController);
+app.get('/file/:id', getSingleFileController);
+app.delete('/file/:id', deleteFileController);
+
+
 
 // Middleware 404 NOT FOUND
 app.use((req, res) => {
