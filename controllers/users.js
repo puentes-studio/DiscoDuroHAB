@@ -1,3 +1,5 @@
+import generateError  from "../helpers.js";
+
 const newUserController = async (req, res, next) => {
 
      try {
@@ -5,9 +7,9 @@ const newUserController = async (req, res, next) => {
 
         if(!user_name || !email || !password) {
 
-            throw new Error('Debes ingresar un nombre de usuario, un email y una contraseña');
+            throw generateError('Debes ingresar un nombre de usuario, un email y una contraseña', 400);
         
-        }
+        };
 
         res.send({
             status: 'error',
