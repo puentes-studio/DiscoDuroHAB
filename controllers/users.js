@@ -3,9 +3,9 @@ import crearUsuario from "../db/usersDb.js";
 
 const newUserController = async (req, res, next) => {
     try {
-        const { user_name, email, password } = req.body;
+        const { username, email, password } = req.body;
 
-        if (!user_name || !email || !password) {
+if (!username || !email || !password)  {
             throw generateError('Debes ingresar un nombre de usuario, un email y una contraseña', 400);
         }
 
@@ -17,7 +17,9 @@ const newUserController = async (req, res, next) => {
 
         console.log('ID generado:', id);
 
+
         res.status(201).send({
+            success: true,
             status: 'ok',
             message: `User created with id: ${id}`,
         });

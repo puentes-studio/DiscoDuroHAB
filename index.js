@@ -2,26 +2,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
-
-import {
-    newUserController,
-    getUserController,
-    loginController,
-} from './controllers/users.js' //Importamos controladores de users.js
-
-import {
-    getFilesController,
-    newFileController,
-    getSingleFileController,
-    deleteFileController,
-} from './controllers/files.js' //Importamos controladores de files.js
-
-import {
-    getFoldersController,
-    newFolderController,
-    getSingleFolderController,
-    deleteFolderController,
-} from './controllers/folders.js' //Importamos controladores de folders.js
+import bodyParser from 'body-parser';
+import { newUserController, getUserController, loginController } from './controllers/users.js' //Importamos controladores de users.js
+import { getFilesController, newFileController, getSingleFileController, deleteFileController } from './controllers/files.js' //Importamos controladores de files.js
+import { getFoldersController, newFolderController, getSingleFolderController, deleteFolderController } from './controllers/folders.js' //Importamos controladores de folders.js
 
 
 
@@ -31,7 +15,12 @@ dotenv.config();
 const app = express();
 
 app.use(express.json()); //Middleware que trata de procesar las peticiones a formato JSON
-app.use(morgan('dev')) //Middleware de Gestión de Peticiones
+app.use(express.json());
+app.use(routes);
+app.use(morgan('dev')); // Middleware for logging HTTP requests
+app.use(bodyParser.json()); // Middleware for parsing JSON and URL-encoded data
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 
 
@@ -75,6 +64,9 @@ app.use((error, req, res, next) => {
 
 
 //LANZAR SERVIDOR
+
+
+
 app.listen(8080,()=>{
-    console.log('Servidor funcionando exitosamente en el puerto 8080: http://localhost:8080 ⚡');
+    console.log('Servidor funcionando exitosamente en el puerto 8080: ⚡⚡⚡⚡ http://localhost:8080 ⚡⚡⚡⚡');
 });

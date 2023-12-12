@@ -17,32 +17,35 @@ const main = async () => {
         // Create User Table
         await pool.query(`
             CREATE TABLE IF NOT EXISTS Users (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                user_name VARCHAR(20) NOT NULL UNIQUE,
-                email VARCHAR(100) NOT NULL UNIQUE,
+                id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+                username VARCHAR(50) UNIQUE NOT NULL,
+                email VARCHAR(100) UNIQUE NOT NULL,
                 password VARCHAR(100) NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                avatar VARCHAR(100),
+                registrationCode CHAR(30),
+                recoverPassCode CHAR(10),
+                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
+                modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
             )
         `);
 
           // Create Folders Table
           await pool.query(`
           CREATE TABLE IF NOT EXISTS Folders (
-              id INT AUTO_INCREMENT PRIMARY KEY,
-              folder_name VARCHAR(100) NOT NULL,
-              created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-              modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-              user_id INT,
-              FOREIGN KEY (user_id) REFERENCES Users(id)
-          )
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            folder_name VARCHAR(100) NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            user_id INT UNSIGNED NOT NULL,
+            FOREIGN KEY (user_id) REFERENCES Users(id)
+        )
       `);
 
         // Create Files Table
         await pool.query(`
             CREATE TABLE IF NOT EXISTS Files (
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                user_id INTEGER NOT NULL,
+                user_id INTEGER UNSIGNED NOT NULL,
                 file_name VARCHAR(100) NOT NULL,
                 folder_id INTEGER NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
