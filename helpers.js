@@ -5,6 +5,6 @@ const generateError = (message, status) => {
     return error;
 }
 
-export default {
+export {
     generateError,
 };

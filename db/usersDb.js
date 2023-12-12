@@ -1,18 +1,14 @@
 import getPool from "./getPool.js"; //Conexión con nuestra base de datos
-import generateError from "../helpers.js"; //Importamos gestor de errores de helpers.js
+import {generateError} from "../helpers.js"; //Importamos gestor de errores de helpers.js
 import bcrypt from 'bcrypt';
 
 //FUNCIÓN PARA CREAR USUARIO EN BASE DE DATOS Y DEVOLVER SU ID
 const crearUsuario = async (user_name, email, password) => {
 
-    let connection;
-
-    try {
-
-        connection = await getPool(); //Función que conecta con la base de datos
+       let pool = await getPool(); //Función que conecta con la base de datos
 
         //Comprobar que no exista ese nombre de usuario
-        const [userName] = await connection.query(`
+        const [userName] = await pool.query(`
           SELECT id FROM Users WHERE user_name = ?
         `,
           [user_name]
@@ -23,7 +19,7 @@ const crearUsuario = async (user_name, email, password) => {
         };
 
         //Comprobar que no exista un usuario con ese email
-        const [userEmail] = await connection.query(`
+        const [userEmail] = await pool.query(`
           SELECT id FROM Users Where email = ?
         `,
           [email]
@@ -38,25 +34,17 @@ const crearUsuario = async (user_name, email, password) => {
 
 
         //Crear usuario
-        const newUser = await connection.query(`
+        const newUser = await pool.query(`
            INSERT INTO Users (user_name, email, password) VALUES (?, ?, ?)
         `,
           [user_name, email, passwordEncrypt]
         );
 
+        //console.log(newUser)
+
         //Devolver id
-        return newUser.insertId;
-
-
-    } finally {                                //No hace falta hacer un catch porque de haber error pasa por el gestor de errores
-       if(connection) connection.release();
-    }
-
-    
-
+        return newUser[0].insertId;
 };
 
 
-export default {
-    crearUsuario
-};
+export default crearUsuario;

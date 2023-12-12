@@ -1,4 +1,4 @@
-import generateError from "../helpers.js";
+import {generateError} from "../helpers.js";
 import crearUsuario from "../db/usersDb.js";
 
 const newUserController = async (req, res, next) => {

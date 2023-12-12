@@ -17,6 +17,12 @@ const main = async () => {
 
         // Crear Tabla de usuarios
 
+        // registro, login
+
+        // endpoint que devuelve todos los files y carpetas de un usuario:
+        //get /disco
+        //get /disco?dir=id_carpeta (req.query)
+
         await pool.query(`
             CREATE TABLE IF NOT EXISTS Users (
                 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -30,12 +36,15 @@ const main = async () => {
 
         // Crear Tabla de Ficheros
 
+        // subir, eliminar, renombrar file
+
         await pool.query(`
             CREATE TABLE IF NOT EXISTS Files (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 user_id INTEGER NOT NULL,
                 file_name VARCHAR(100) NOT NULL,
-                file_path VARCHAR(255) NOT NULL,
+                -- file_path VARCHAR(255) NOT NULL,
+                FK Folders(id) NULL
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (user_id) REFERENCES Users(id)
             )
@@ -44,14 +53,16 @@ const main = async () => {
 
         // Crear Tabla de Carpetas
 
+        // crea, elimina, renombra carpeta
+
         await pool.query(`
             CREATE TABLE IF NOT EXISTS Folders (
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                user_id INTEGER NOT NULL,
+                -- user_id INTEGER NOT NULL,
                 folder_name VARCHAR(100) NOT NULL,
-                folder_path VARCHAR(255) NOT NULL,
+                -- folder_path VARCHAR(255) NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (user_id) REFERENCES Users(id)
+                -- FOREIGN KEY (user_id) REFERENCES Users(id)
             )
         `);
 
