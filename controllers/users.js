@@ -1,5 +1,5 @@
 import {generateError} from "../helpers.js";
-import {crearUsuario} from "../db/usersDb.js";
+import {crearUsuario, getUserById} from "../db/usersDb.js";
 
 const newUserController = async (req, res, next) => {  //FUNCIONANDO
     try {
@@ -31,11 +31,11 @@ const getUserController = async (req, res, next) => {  //TRABAJANDO EN ELLO
         
         const {id} = req.params;
 
-        console.log(id);
+        const user = await getUserById(id);
 
         res.send({
-            status: 'error',
-            message: 'Aún no implementado'
+            status: 'ok',
+            data: user,
         });
     } catch (error) {
         next(error);

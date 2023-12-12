@@ -41,14 +41,14 @@ app.get('/users/:id', getUserController);
 app.post('/login', loginController);
 
 //RUTAS DE FILES
-app.get('/', getFilesController);
-app.post('/', newFileController);
+app.get('/files', getFilesController);
+app.post('/files', newFileController);
 app.get('/file/:id', getSingleFileController);
 app.delete('/file/:id', deleteFileController);
 
 //RUTAS DE FOLDERS
-app.get('/', getFoldersController);
-app.post('/', newFolderController);
+app.get('/folders', getFoldersController);
+app.post('/folders', newFolderController);
 app.get('/folder/:id', getSingleFolderController);
 app.delete('/folder/:id', deleteFolderController);
 
