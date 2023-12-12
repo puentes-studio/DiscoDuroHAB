@@ -1,25 +1,29 @@
 {
   "type": "module",
-  "name": "projectdd",
+  "name": "proyecto-2",
   "version": "1.0.0",
-  "description": "Project DISCO DURO HAB",
-  "main": "app.js",
+  "description": "Second Project of the Bootcamp of Programming and coding in Spain.",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/puentes-studio/DiscoDuroHAB.git"
-  },
-  "author": "Skarlett Williams, Moha Elmahagadi, Gonzalo Rodriguez, Vlad Beltran.",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/puentes-studio/DiscoDuroHAB/issues"
-  },
-  "homepage": "https://github.com/puentes-studio/DiscoDuroHAB#readme",
   "dependencies": {
+    "axios": "^1.6.2",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
+    "express": "^4.18.2",
     "express-fileupload": "^1.4.3",
+    "file-upload": "^0.0.0",
+    "joi": "^17.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
     "mysql2": "^3.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
   }
 }

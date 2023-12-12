@@ -1,61 +1,80 @@
-import getPool from './getPool.js';
-
-const USERS_TABLE = 'Users';
-const FILES_TABLE = 'Files';
-const FOLDERS_TABLE = 'Folders';
+import getPool from './getPool.js'
 
 const main = async () => {
-    const pool = await getPool();
+    // Variable que almacenará una conexión con la base de datos.
+    let pool;
 
     try {
-        console.log('Deleting tables...');
+        pool = await getPool();
 
-        await pool.query('DROP TABLE IF EXISTS ??, ??, ??', [USERS_TABLE, FILES_TABLE, FOLDERS_TABLE]);
+        console.log('Borrando tablas...');
 
-        console.log('Creating tables...');
+        await pool.query(
+            'DROP TABLE IF EXISTS Folders, Files, Users'
+        );
 
-        const createUserTableQuery = `
-            CREATE TABLE IF NOT EXISTS ${USERS_TABLE} (
+        console.log('Creando tablas...');
+
+        // Crear Tabla de usuarios
+
+        // registro, login
+
+        // endpoint que devuelve todos los files y carpetas de un usuario:
+        //get /disco
+        //get /disco?dir=id_carpeta (req.query)
+
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS Users (
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                password VARCHAR(100) NOT NULL,
+                user_name VARCHAR(20) NOT NULL UNIQUE,
                 email VARCHAR(100) NOT NULL UNIQUE,
+                password VARCHAR(100) NOT NULL,
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP
             )
-        `;
+        `);
 
-        const createFilesTableQuery = `
-            CREATE TABLE IF NOT EXISTS ${FILES_TABLE} (
+
+        // Crear Tabla de Ficheros
+
+        // subir, eliminar, renombrar file
+
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS Files (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 user_id INTEGER NOT NULL,
                 file_name VARCHAR(100) NOT NULL,
-                file_path VARCHAR(255) NOT NULL,
+                -- file_path VARCHAR(255) NOT NULL,
+                FK Folders(id) NULL
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (user_id) REFERENCES ${USERS_TABLE}(id)
+                FOREIGN KEY (user_id) REFERENCES Users(id)
             )
-        `;
+        `);
 
-        const createFoldersTableQuery = `
-            CREATE TABLE IF NOT EXISTS ${FOLDERS_TABLE} (
+
+        // Crear Tabla de Carpetas
+
+        // crea, elimina, renombra carpeta
+
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS Folders (
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                user_id INTEGER NOT NULL,
+                -- user_id INTEGER NOT NULL,
                 folder_name VARCHAR(100) NOT NULL,
-                folder_path VARCHAR(255) NOT NULL,
+                -- folder_path VARCHAR(255) NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (user_id) REFERENCES ${USERS_TABLE}(id)
+                -- FOREIGN KEY (user_id) REFERENCES Users(id)
             )
-        `;
+        `);
 
-        await pool.query(createUserTableQuery);
-        await pool.query(createFilesTableQuery);
-        await pool.query(createFoldersTableQuery);
 
-        console.log('Tables created successfully!');
+        console.log('¡Tablas creadas con éxito!⚡');
     } catch (err) {
-        console.error('Error executing queries:', err);
+        console.error(err);
     } finally {
-        await pool.end(); 
+        // Cerramos el proceso.
         process.exit();
     }
 };
 
+// Ejecutamos la función anterior.
 main();
