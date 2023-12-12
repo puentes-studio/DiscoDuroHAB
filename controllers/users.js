@@ -1,7 +1,7 @@
 import {generateError} from "../helpers.js";
 import crearUsuario from "../db/usersDb.js";
 
-const newUserController = async (req, res, next) => {
+const newUserController = async (req, res, next) => {  //FUNCIONANDO
     try {
         const { user_name, email, password } = req.body;
 
@@ -26,8 +26,10 @@ const newUserController = async (req, res, next) => {
     }
 };
 
-const getUserController = async (req, res, next) => {
+const getUserController = async (req, res, next) => {  //TRABAJANDO EN ELLO
     try {
+        console.log(req.params);
+
         res.send({
             status: 'error',
             message: 'Aún no implementado'

@@ -37,7 +37,7 @@ app.use(morgan('dev')) //Middleware de Gestión de Peticiones
 
 //RUTAS DE USUARIO
 app.post('/users', newUserController);
-app.get('/users:id', getUserController);
+app.get('/users/:id', getUserController);
 app.post('/login', loginController);
 
 //RUTAS DE FILES
