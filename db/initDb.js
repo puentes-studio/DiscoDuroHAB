@@ -29,7 +29,22 @@ const main = async () => {
                 user_name VARCHAR(20) NOT NULL UNIQUE,
                 email VARCHAR(100) NOT NULL UNIQUE,
                 password VARCHAR(100) NOT NULL,
-                created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+            )
+        `);
+
+
+        // Crear Tabla de Carpetas
+
+        // crea, elimina, renombra carpeta
+        
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS Folders (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                folder_name VARCHAR(100) NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
             )
         `);
 
@@ -43,26 +58,11 @@ const main = async () => {
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 user_id INTEGER NOT NULL,
                 file_name VARCHAR(100) NOT NULL,
-                -- file_path VARCHAR(255) NOT NULL,
-                FK Folders(id) NULL
+                folder_id INT, -- Columna que referencia a Folders
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (user_id) REFERENCES Users(id)
-            )
-        `);
-
-
-        // Crear Tabla de Carpetas
-
-        // crea, elimina, renombra carpeta
-
-        await pool.query(`
-            CREATE TABLE IF NOT EXISTS Folders (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                -- user_id INTEGER NOT NULL,
-                folder_name VARCHAR(100) NOT NULL,
-                -- folder_path VARCHAR(255) NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                -- FOREIGN KEY (user_id) REFERENCES Users(id)
+                modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                FOREIGN KEY (user_id) REFERENCES Users(id),
+                FOREIGN KEY (folder_id) REFERENCES Folders(id) -- Referencia a la tabla Folders
             )
         `);
 
