@@ -7,7 +7,7 @@ const getUserById = async (id) => {
 
   let pool = await getPool();
   
-  const [result] = await pool.query(`SELECT id, user_name, email, created_at FROM Users WHERE id = ?`, [id]   );  
+  const [result] = await pool.query(`SELECT id, user_name, email, created_at FROM Users WHERE id = ?`, [id]);  
   
   if(result.length === 0) {
       throw generateError('No hay ningún usuario con ese id', 404);
@@ -63,7 +63,24 @@ const crearUsuario = async (user_name, email, password) => {
 };
 
 
+//FUNCIÓN PARA HACER LOGIN DE USUARIO A TRAVÉS DE SU EMAIL
+const getUserByEmail = async (email) => {
+
+  let pool = await getPool();
+  
+  const [result] = await pool.query(`SELECT * FROM Users WHERE email = ?`, [email]);  
+  
+  if(result.length === 0) {
+      throw generateError('No hay ningún usuario con ese email', 404);
+     }
+
+  return result[0];       //De esta forma se devuelve el primer elemento
+
+  };
+
+
 export {
   crearUsuario,
   getUserById,
+  getUserByEmail,
 };

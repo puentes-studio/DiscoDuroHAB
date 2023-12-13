@@ -1,5 +1,7 @@
 import {generateError} from "../helpers.js";
-import {crearUsuario, getUserById} from "../db/usersDb.js";
+import {crearUsuario, getUserByEmail, getUserById} from "../db/usersDb.js";
+import bcrypt from 'bcrypt';
+import jsonwebtoken from 'jsonwebtoken';
 
 const newUserController = async (req, res, next) => {  //FUNCIONANDO
     try {
@@ -26,7 +28,7 @@ const newUserController = async (req, res, next) => {  //FUNCIONANDO
     }
 };
 
-const getUserController = async (req, res, next) => {  //TRABAJANDO EN ELLO
+const getUserController = async (req, res, next) => {  //FUNCIONANDO
     try {
         
         const {id} = req.params;
@@ -42,11 +44,45 @@ const getUserController = async (req, res, next) => {  //TRABAJANDO EN ELLO
     }
 };
 
-const loginController = async (req, res, next) => {
+const loginController = async (req, res, next) => {  //TRABAJANDO EN ELLO
     try {
+
+        const {email, password} = req.body;
+
+        if(!email || !password) {
+             throw generateError('Debes ingresar un email y una password correctas', 400);
+        }
+
+     //Función que recoge los datos del usuario de la DataBase a través de su email
+        const user = await getUserByEmail(email);
+
+     //Comprueba que coincide con la contraseña comparando la que ingresa el usuario con la que está en la DataBase
+        const validPassword = await bcrypt.compare(password, user.password);
+
+        if(!validPassword) {
+            throw generateError('Contraseña incorrecta', 401);
+        }
+
+     //Se crea el PayLoad del Token
+        const PayLoad = {id: user.id};
+
+
+     //Se firma el Token con el SECRETO definido en el archivo .env
+        const token = jsonwebtoken.sign(PayLoad, process.env.SECRET, {
+            expiresIn: '30d',
+        });
+
+
+     //Se envía el Token
+        
+
+        
+
+
+
         res.send({
-            status: 'error',
-            message: 'Aún no implementado'
+            status: 'ok',
+            data: token,
         });
     } catch (error) {
         next(error);
