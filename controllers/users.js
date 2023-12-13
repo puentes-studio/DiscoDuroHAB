@@ -1,57 +1,61 @@
-import {generateError} from "../helpers.js";
-import crearUsuario from "../db/usersDb.js";
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import { User } from '../models';
 
-const newUserController = async (req, res, next) => {
+const UserController = {
+  async register(req, res) {
     try {
-        const { username, email, password } = req.body;
+      const { username, email, password } = req.body;
 
-if (!username || !email || !password)  {
-            throw generateError('Debes ingresar un nombre de usuario, un email y una contraseña', 400);
-        }
+      if (!username || !email || !password) {
+        throw new Error('You must provide a username, email, and password');
+      }
 
-        const id = await crearUsuario(user_name, email, password);
+      const hashedPassword = await bcrypt.hash(password, 8);
 
-        if (!id) {
-            throw generateError('Error al crear el usuario', 500);
-        }
+      const user = await User.create({
+        username,
+        email,
+        password: hashedPassword,
+      });
 
-        console.log('ID generado:', id);
+      const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY);
 
+      user.token = token;
+      await user.save();
 
-        res.status(201).send({
-            success: true,
-            status: 'ok',
-            message: `User created with id: ${id}`,
-        });
+      res.status(201).json({ user, token });
     } catch (error) {
-        next(error);
+      res.status(400).json({ error: error.message });
     }
-};
+  },
 
-const getUserController = async (req, res, next) => {
+  async login(req, res) {
     try {
-        res.send({
-            status: 'error',
-            message: 'Aún no implementado'
-        });
+      const { email, password } = req.body;
+
+      const user = await User.findOne({ where: { email } });
+
+      if (!user) {
+        throw new Error('Invalid email or password');
+      }
+
+      const isPasswordMatch = await bcrypt.compare(password, user.password);
+
+      if (!isPasswordMatch) {
+        throw new Error('Invalid email or password');
+      }
+
+      const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY);
+
+      user.token = token;
+      await user.save();
+
+      res.json({ user, token });
     } catch (error) {
-        next(error);
+      res.status(401).json({ error: error.message });
     }
+  },
 };
 
-const loginController = async (req, res, next) => {
-    try {
-        res.send({
-            status: 'error',
-            message: 'Aún no implementado'
-        });
-    } catch (error) {
-        next(error);
-    }
-};
-
-export {
-    newUserController,
-    getUserController,
-    loginController,
-};
+export default UserController;

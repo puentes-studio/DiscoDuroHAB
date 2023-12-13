@@ -6,6 +6,12 @@ import bodyParser from 'body-parser';
 import { newUserController, getUserController, loginController } from './controllers/users.js' //Importamos controladores de users.js
 import { getFilesController, newFileController, getSingleFileController, deleteFileController } from './controllers/files.js' //Importamos controladores de files.js
 import { getFoldersController, newFolderController, getSingleFolderController, deleteFolderController } from './controllers/folders.js' //Importamos controladores de folders.js
+import { sequelize } from './models';
+import userRoutes from './routes/userRoutes';
+import fileRoutes from './routes/userRoutes.js';
+import { User } from './models/user'; // Replace 'user' with the actual filename
+import { File } from './models/file'; // Replace 'file' with the actual filename
+
 
 
 
@@ -16,10 +22,13 @@ const app = express();
 
 app.use(express.json()); //Middleware que trata de procesar las peticiones a formato JSON
 app.use(express.json());
-app.use(routes);
 app.use(morgan('dev')); // Middleware for logging HTTP requests
 app.use(bodyParser.json()); // Middleware for parsing JSON and URL-encoded data
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use('/users', userRoutes);
+app.use('/files', fileRoutes);
+
 
 
 
@@ -65,8 +74,13 @@ app.use((error, req, res, next) => {
 
 //LANZAR SERVIDOR
 
+sequelize.sync().then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  });
+  
 
-
-app.listen(8080,()=>{
-    console.log('Servidor funcionando exitosamente en el puerto 8080: ⚡⚡⚡⚡ http://localhost:8080 ⚡⚡⚡⚡');
-});
+// app.listen(8080,()=>{
+//     console.log('Servidor funcionando exitosamente en el puerto 8080: ⚡⚡⚡⚡ http://localhost:8080 ⚡⚡⚡⚡');
+// });
