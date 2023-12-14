@@ -44,7 +44,7 @@ const getUserController = async (req, res, next) => {  //FUNCIONANDO
     }
 };
 
-const loginController = async (req, res, next) => {  //TRABAJANDO EN ELLO
+const loginController = async (req, res, next) => {  //FUNCIONANDO
     try {
 
         const {email, password} = req.body;
@@ -75,11 +75,6 @@ const loginController = async (req, res, next) => {  //TRABAJANDO EN ELLO
 
      //Se envía el Token
         
-
-        
-
-
-
         res.send({
             status: 'ok',
             data: token,

@@ -23,6 +23,8 @@ import {
     deleteFolderController,
 } from './controllers/folders.js' //Importamos controladores de folders.js
 
+import { authorizationUser } from './middlewares/authorization.js'; //Importamos middleware encargado de comprobar peticiones hechas por usuarios registrados
+
 
 
 dotenv.config();
@@ -40,19 +42,17 @@ app.post('/users', newUserController);
 app.get('/users/:id', getUserController);
 app.post('/login', loginController);
 
+//RUTAS DE FOLDERS
+app.post('/', authorizationUser, newFolderController);  //Estamos trabajando en la raíz, por eso solo la '/', para subir carpetas a la raíz
+app.get('/', getFoldersController);
+app.get('/folder/:id', getSingleFolderController);
+app.delete('/folder/:id', deleteFolderController);
+
 //RUTAS DE FILES
 app.get('/files', getFilesController);
 app.post('/files', newFileController);
 app.get('/file/:id', getSingleFileController);
 app.delete('/file/:id', deleteFileController);
-
-//RUTAS DE FOLDERS
-app.get('/folders', getFoldersController);
-app.post('/folders', newFolderController);
-app.get('/folder/:id', getSingleFolderController);
-app.delete('/folder/:id', deleteFolderController);
-
-
 
 // Middleware 404 NOT FOUND
 app.use((req, res) => {
