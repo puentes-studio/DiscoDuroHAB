@@ -18,7 +18,7 @@ const getUserById = async (id) => {
   };
 
 
-//FUNCIÓN PARA CREAR USUARIO EN BASE DE DATOS Y DEVOLVER SU ID
+//FUNCIÓN PARA CREAR USUARIO EN BASE DE DATOS Y GENERAR ID
 const crearUsuario = async (user_name, email, password) => {
 
        let pool = await getPool(); //Función que conecta con la base de datos

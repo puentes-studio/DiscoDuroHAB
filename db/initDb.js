@@ -19,7 +19,7 @@ const main = async () => {
 
         // registro, login
 
-        // endpoint que devuelve todos los files y carpetas de un usuario:
+        //endpoint que devuelve todos los files y carpetas de un usuario:
         //get /disco
         //get /disco?dir=id_carpeta (req.query)
 

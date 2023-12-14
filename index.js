@@ -2,6 +2,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
+import fileUpload from 'express-fileupload'; //Esto en un futuro servirá para subir ARCHIVOS a la tabla de FILES (TRABAJANDO EN ELLO)
 
 import {
     newUserController,
@@ -33,7 +34,8 @@ dotenv.config();
 const app = express();
 
 app.use(express.json()); //Middleware que trata de procesar las peticiones a formato JSON
-app.use(morgan('dev')) //Middleware de Gestión de Peticiones
+app.use(morgan('dev')); //Middleware de Gestión de Peticiones
+app.use(fileUpload); //Middleware que permitirá subir archivos (TRABAJANDO EN ELLO)
 
 
 

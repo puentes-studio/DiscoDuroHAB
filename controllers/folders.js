@@ -4,6 +4,7 @@ import { authorizationUser } from "../middlewares/authorization.js";
 
 //A LOS CONTROLADORES DE AQUÍ ABAJO SOLO DEBEN ACCEDER USUARIOS REGISTRADOS CON UN TOKEN VERIFICADO
 
+//CONTROLADOR QUE PERMITE CREAR UNA NUEVA CARPETA EXCLUSIVAMENTE A USUARIOS REGISTRADOS
 const newFolderController = async (req, res, next) => {
 
     try {
@@ -15,7 +16,7 @@ const newFolderController = async (req, res, next) => {
         }
 
         const id = await createFolder(req.userId, folderName);
-        
+
         res.send({
             status: 'ok',
             message: `Nueva carpeta creada correctamente con id: ${id}`
