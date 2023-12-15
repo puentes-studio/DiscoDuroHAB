@@ -48,4 +48,20 @@ const getFolderById = async (id) => {
 };
 
 
-export {createFolder, getAllFolders, getFolderById};
+//FUNCIÓN PARA BORRAR CARPETAS CREADAS SIEMPRE Y CUANDO EL ID DEL USUARIO Y LA CARPETA BORRADA COINCIDA
+const deleteFolderById = async (id) => {
+
+    let pool; 
+
+    
+     
+     pool = await getPool();
+
+     const [result] = await pool.query(`DELETE FROM Folders WHERE id = ?`, [id]);
+
+       return;
+    
+};
+
+
+export {createFolder, getAllFolders, getFolderById, deleteFolderById};

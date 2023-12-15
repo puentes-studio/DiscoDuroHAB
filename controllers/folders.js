@@ -1,4 +1,4 @@
-import { createFolder, getAllFolders, getFolderById } from "../db/folders.js";
+import { createFolder, deleteFolderById, getAllFolders, getFolderById } from "../db/folders.js";
 import { generateError } from "../helpers.js";
 import { authorizationUser } from "../middlewares/authorization.js";
 
@@ -57,24 +57,27 @@ const getSingleFolderController = async (req, res, next) => { //Función que dev
      }
 };
 
-const deleteFolderController = async (req, res, next) => { //TRABAJANDO EN ELLO
-
-    //req.userId
-    const {id} = req.params;
-
-    //Conseguir los datos de la carpeta/folder que se quiere borrar
-
-
-    //Comprobar que el usuario que está usando el token es el mismo que creó la carpeta que se quiere borrar
-
-    //Borrar carpeta
-
-
-
+const deleteFolderController = async (req, res, next) => { //Función que permite borrar una carpeta si el ID del usuario y el de la carpeta coinciden
     try {
+
+        //req.userId
+        const {id} = req.params;
+
+        //Conseguir los datos de la carpeta/folder que se quiere borrar
+        const folder = await getFolderById(id);
+
+
+        //Comprobar que el usuario que está usando el token es el mismo que creó la carpeta que se quiere borrar
+        if(req.userId !== folder.user_id) {
+             throw generateError('Estás intentando borrar una carpeta que no es tuya', 401);
+         };
+        //Borrar carpeta
+         await deleteFolderById(id);
+
+
         res.send({
-            status: 'error',
-            message: 'Aún no implementado'
+            status: 'ok',
+            message: `La carpeta con id: ${id} fue borrada`,
         });
      } catch (error) {
         next(error);
