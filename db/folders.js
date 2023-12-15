@@ -1,5 +1,3 @@
-//FUNCIONES QUE TENGAN QUE VER CON LAS CARPETAS
-
 import { generateError } from "../helpers.js";
 import getPool from "./getPool.js";
 
@@ -15,4 +13,19 @@ const createFolder = async (userId, folderName = '') => {
 };
 
 
-export {createFolder};
+//FUNCIÓN PARA RECIBIR UNA LISTA DE TODAS LAS CARPETAS CREADAS
+const getAllFolders = async () => {
+
+    let pool 
+
+    
+     pool = await getPool();
+
+     const [result] = await pool.query(`SELECT * FROM Folders ORDER BY created_at DESC`)
+
+     return result;
+    
+};
+
+
+export {createFolder, getAllFolders};

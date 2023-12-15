@@ -1,4 +1,4 @@
-import { createFolder } from "../db/folders.js";
+import { createFolder, getAllFolders } from "../db/folders.js";
 import { generateError } from "../helpers.js";
 import { authorizationUser } from "../middlewares/authorization.js";
 
@@ -27,7 +27,22 @@ const newFolderController = async (req, res, next) => {
 };
 
 
-const getFoldersController = async (req, res, next) => {
+const getFoldersController = async (req, res, next) => { //Función que devuelve un listado de las carpetas creadas en la base de datos
+    try {
+
+        const folders = await getAllFolders();
+
+        res.send({
+            status: 'ok',
+            data: folders,
+        });
+     } catch (error) {
+        next(error);
+     }
+};
+
+
+const getSingleFolderController = async (req, res, next) => { //NO SE VA A IMPLEMENTAR EN PRINCIPIO
     try {
         res.send({
             status: 'error',
@@ -38,19 +53,20 @@ const getFoldersController = async (req, res, next) => {
      }
 };
 
+const deleteFolderController = async (req, res, next) => { //TRABAJANDO EN ELLO
 
-const getSingleFolderController = async (req, res, next) => {
-    try {
-        res.send({
-            status: 'error',
-            message: 'Aún no implementado'
-        });
-     } catch (error) {
-        next(error);
-     }
-};
+    //req.userId
+    const {id} = req.params;
 
-const deleteFolderController = async (req, res, next) => {
+    //Conseguir los datos de la carpeta/folder que se quiere borrar
+
+
+    //Comprobar que el usuario que está usando el token es el mismo que creó la carpeta que se quiere borrar
+
+    //Borrar carpeta
+
+
+
     try {
         res.send({
             status: 'error',
