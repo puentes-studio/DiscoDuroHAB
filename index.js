@@ -33,10 +33,10 @@ dotenv.config();
 
 const app = express();
 
+
+app.use(fileUpload()); //Middleware que permitirá subir archivos (TRABAJANDO EN ELLO)
 app.use(express.json()); //Middleware que trata de procesar las peticiones a formato JSON
 app.use(morgan('dev')); //Middleware de Gestión de Peticiones
-app.use(fileUpload()); //Middleware que permitirá subir archivos (TRABAJANDO EN ELLO)
-
 
 
 //RUTAS DE USUARIO
