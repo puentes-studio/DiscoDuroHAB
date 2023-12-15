@@ -1,4 +1,4 @@
-import { createFolder, getAllFolders } from "../db/folders.js";
+import { createFolder, getAllFolders, getFolderById } from "../db/folders.js";
 import { generateError } from "../helpers.js";
 import { authorizationUser } from "../middlewares/authorization.js";
 
@@ -42,11 +42,15 @@ const getFoldersController = async (req, res, next) => { //Función que devuelve
 };
 
 
-const getSingleFolderController = async (req, res, next) => { //NO SE VA A IMPLEMENTAR EN PRINCIPIO
+const getSingleFolderController = async (req, res, next) => { //Función que devuelve la carpeta creada de un usuario a través de su ID
     try {
+        
+        const {id} = req.params;
+        const folder = await getFolderById(id);
+
         res.send({
-            status: 'error',
-            message: 'Aún no implementado'
+            status: 'ok',
+            data: folder,
         });
      } catch (error) {
         next(error);

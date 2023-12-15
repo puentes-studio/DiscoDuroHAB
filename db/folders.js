@@ -28,4 +28,24 @@ const getAllFolders = async () => {
 };
 
 
-export {createFolder, getAllFolders};
+//FUNCIÓN PARA RECIBIR UNA CARPETA POR SU ID
+const getFolderById = async (id) => {
+
+    let pool; 
+
+    
+     
+     pool = await getPool();
+
+     const [result] = await pool.query(`SELECT * FROM Folders WHERE id = ?`, [id]);
+
+        if (result.length === 0) {
+            throw generateError(`La carpeta con id: ${id} no existe`)
+        }
+
+        return result[0];
+    
+};
+
+
+export {createFolder, getAllFolders, getFolderById};
