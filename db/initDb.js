@@ -59,11 +59,11 @@ const main = async () => {
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 user_id INTEGER NOT NULL,
                 file_name VARCHAR(100) NOT NULL,
-                folder_id INT, -- Columna que referencia a Folders
+                folder_id INT, 
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                 FOREIGN KEY (user_id) REFERENCES Users(id),
-                FOREIGN KEY (folder_id) REFERENCES Folders(id) -- Referencia a la tabla Folders
+                FOREIGN KEY (folder_id) REFERENCES Folders(id) 
             )
         `);
 
