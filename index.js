@@ -46,10 +46,10 @@ app.get('/users/:id', getUserController); //working
 app.post('/login', loginController); //working
 
 //RUTAS DE FOLDERS
-app.post('/', authorizationUser, newFolderController);  //Estamos trabajando en la raíz, por eso solo la '/', para subir carpetas a la raíz
+app.post('/', authorizationUser, newFolderController); //working
 app.get('/', getFoldersController); //working
 app.get('/folder/:id', getSingleFolderController); //working
-app.delete('/folder/:id', authorizationUser, deleteFolderController); //Trabajando en ello
+app.delete('/folder/:id', authorizationUser, deleteFolderController); //working
 
 //RUTAS DE FILES
 app.get('/files', getFilesController);
