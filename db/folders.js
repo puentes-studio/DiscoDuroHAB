@@ -6,7 +6,7 @@ const createFolder = async (userId, folderName = '') => {
 
     let pool = await getPool();
 
-    const [result] = await pool.query(`INSERT INTO Folders (id, folder_name) VALUES(?, ?)`, [userId, folderName]);
+    const [result] = await pool.query(`INSERT INTO Folders (folder_name, user_id) VALUES (?, ?)`, [folderName, userId]);
 
     return result.insertId;
    
@@ -37,11 +37,12 @@ const getFolderById = async (id) => {
      
      pool = await getPool();
 
-     const [result] = await pool.query(`SELECT * FROM Folders WHERE id = ?`, [id]);
+     const [result] = await pool.query(`SELECT id, folder_name, user_id FROM Folders WHERE id = ?`, [id]);
 
         if (result.length === 0) {
             throw generateError(`La carpeta con id: ${id} no existe`)
         }
+        console.log('Datos de la carpeta obtenidos:', result[0]);
 
         return result[0];
     
@@ -57,7 +58,7 @@ const deleteFolderById = async (id) => {
      
      pool = await getPool();
 
-     const [result] = await pool.query(`DELETE FROM Folders WHERE id = ?`, [id]);
+     await pool.query(`DELETE FROM Folders WHERE id = ?`, [id]);
 
        return;
     

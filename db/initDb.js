@@ -43,6 +43,7 @@ const main = async () => {
             CREATE TABLE IF NOT EXISTS Folders (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 folder_name VARCHAR(100) NOT NULL,
+                user_id INT NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
             )

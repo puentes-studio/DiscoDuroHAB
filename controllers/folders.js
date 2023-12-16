@@ -66,6 +66,9 @@ const deleteFolderController = async (req, res, next) => { //Función que permit
         //Conseguir los datos de la carpeta/folder que se quiere borrar
         const folder = await getFolderById(id);
 
+        console.log('ID de usuario actual:', req.userId);
+        console.log('ID de usuario de la carpeta:', folder.user_id);
+
 
         //Comprobar que el usuario que está usando el token es el mismo que creó la carpeta que se quiere borrar
         if(req.userId !== folder.user_id) {
