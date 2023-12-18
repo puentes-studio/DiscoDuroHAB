@@ -43,8 +43,6 @@ const updateFileNameById = async (id, newName) => {
 };
 
 
-
-
 const getFileById = async (id) => {
 
     let pool; 
@@ -56,27 +54,11 @@ const getFileById = async (id) => {
      const [result] = await pool.query(`SELECT id, file_name, user_id FROM Files WHERE id = ?`, [id]);
 
         if (result.length === 0) {
-            throw generateError(`La carpeta con id: ${id} no existe`)
+            throw generateError(`El archivo con id: ${id} no existe`)
         }
-        console.log('Datos de la carpeta obtenidos:', result[0]);
+        console.log('Archivos obtenidos:', result[0]);
 
         return result[0];
-    
-};
-
-
-//Delete a file
-const deleteFileById = async (id) => {
-
-    let pool; 
-
-    
-     
-     pool = await getPool();
-
-     await pool.query(`DELETE FROM Files WHERE id = ?`, [id]);
-
-       return;
     
 };
 
@@ -94,5 +76,20 @@ const getAllFiles = async () => {
     
 };
 
+//Delete a file
+const deleteFileById = async (id) => {
 
-export {createFile, getAllFiles, updateFileNameById, deleteFileById, };
+    let pool; 
+
+    
+     
+     pool = await getPool();
+
+     await pool.query(`DELETE FROM Files WHERE id = ?`, [id]);
+
+       return;
+    
+};
+
+
+export { createFile, getAllFiles, updateFileNameById, deleteFileById };
