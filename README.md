@@ -37,4 +37,9 @@ Hay que diferenciar entre user_id y el id de la carpeta. El id de la carpeta est
 
 5- CREAR FICHEROS:
 
-En postman, 
+En postman, poner la dirección http con terminación /files y hacer petición de tipo POST completando los datos del siguiente JSON:
+
+{
+"fileName": "Nombre_de_fichero",
+"folderName" : "Nombre_de_carpeta"
+}

@@ -4,6 +4,7 @@ import { getFilesFromDatabase } from "../db/files.js";
 import { createFileInDatabase } from "../db/files.js";
 import { getSingleFileFromDatabase } from "../db/files.js";
 import { deleteFileFromDatabase } from "../db/files.js";
+import { getFoldersByUserId } from "../db/folders.js";
 
 const getFilesController = async (req, res, next) => {
     try {
@@ -29,16 +30,32 @@ const newFileController = async (req, res, next) => {
     try {
         const token = jsonwebtoken.verify(authorization, process.env.SECRET); 
         const userId = token.id;
-        const { fileName, folderId } = req.body;
+        const { fileName, folderNames } = req.body;
 
-        console.log('VAMOS BIEEEEEN');
+//        const user_folders = await getFoldersByUserId(userId);
 
-        if (!fileName || !folderId) {
+        // Comprobamos que el usuario tenga una carpeta con ese nombre
+//        let isUserFoldersExist = false;
+//
+//        user_folders.forEach(folder => {
+//            if (folder.folderName === folderNames) {
+//                isUserFoldersExist = true;
+//            }
+//        });
+//
+//        if (!isUserFoldersExist) {
+//            throw generateError('El usuario no tiene ninguna carpeta con ese nombre', 404);
+//        }
+//
+//        console.log('VAMOS BIEEEEEN');
+//        console.log('folderName', folderNames);
+
+        if (!fileName || !folderName) {
             throw generateError('Debes proporcionar un nombre y carpeta para el archivo', 400);
         }
 
         // Utiliza tu función correspondiente para crear el archivo en la base de datos
-        const fileId = await createFileInDatabase(userId, fileName, folderId);
+        const fileId = await createFileInDatabase(userId, fileName, folderName);
 
         res.status(201).json({
             status: 'ok',

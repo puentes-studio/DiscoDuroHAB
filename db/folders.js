@@ -64,5 +64,22 @@ const deleteFolderById = async (id) => {
     
 };
 
+// Scarlet: funcion para obtener todas las carpetas asociadas a un usuario
+// Estaba funcion no estaba creada
 
-export {createFolder, getAllFolders, getFolderById, deleteFolderById};
+const getFoldersByUserId = async (userId) => {
+    let pool = await getPool();
+
+    const [result] = await pool.query(
+        `SELECT * FROM Folders WHERE user_id = ? ORDER BY created_at DESC`,
+        [userId]
+    );
+
+    //console.log("Datos de las carpetas obtenidos:", result);
+
+    return result;
+};
+
+
+
+export {createFolder, getAllFolders, getFolderById, deleteFolderById, getFoldersByUserId};
