@@ -1,5 +1,7 @@
 import getPool from './getPool.js'
 
+import getPool from './getPool.js'
+
 const main = async () => {
     // Variable que almacenará una conexión con la base de datos.
     let pool;
@@ -43,6 +45,7 @@ const main = async () => {
             CREATE TABLE IF NOT EXISTS Folders (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 folder_name VARCHAR(100) NOT NULL,
+                user_id INT NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
             )
@@ -58,11 +61,11 @@ const main = async () => {
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 user_id INTEGER NOT NULL,
                 file_name VARCHAR(100) NOT NULL,
-                folder_id INT, -- Columna que referencia a Folders
+                folder_id INT, 
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                 FOREIGN KEY (user_id) REFERENCES Users(id),
-                FOREIGN KEY (folder_id) REFERENCES Folders(id) -- Referencia a la tabla Folders
+                FOREIGN KEY (folder_id) REFERENCES Folders(id) 
             )
         `);
 
@@ -78,5 +81,3 @@ const main = async () => {
 
 // Ejecutamos la función anterior.
 main();
-
-
