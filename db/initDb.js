@@ -68,7 +68,7 @@ const main = async () => {
         `);
 
 
-        console.log('¡Tablas creadas con éxito!⚡');
+        console.log('¡Data base created successfully!');
     } catch (err) {
         console.error(err);
     } finally {

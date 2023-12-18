@@ -4,10 +4,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const {
-    MYSQL_HOST,
-    MYSQL_USER,
-    MYSQL_PASS,
-    MYSQL_DB 
+    MYSQL_HOST = 'localhost',
+    MYSQL_USER = 'root',
+    MYSQL_PASS = '80901452vBP',
+    MYSQL_DB = 'DISCO_DURO'
 } = process.env;
 
 let pool;
