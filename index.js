@@ -37,18 +37,19 @@ const app = express();
 app.use(fileUpload()); //Middleware que permitirá subir archivos (TRABAJANDO EN ELLO)
 app.use(express.json()); //Middleware que trata de procesar las peticiones a formato JSON
 app.use(morgan('dev')); //Middleware de Gestión de Peticiones
+app.use('/uploads', express.static('./uploads')); //De esta forma todas los archivos subidos quedan almacenados en este directorio
 
 
 //RUTAS DE USUARIO
-app.post('/users', newUserController);
-app.get('/users/:id', getUserController);
-app.post('/login', loginController);
+app.post('/users', newUserController); //working
+app.get('/users/:id', getUserController); //working
+app.post('/login', loginController); //working
 
 //RUTAS DE FOLDERS
-app.post('/', authorizationUser, newFolderController);  //Estamos trabajando en la raíz, por eso solo la '/', para subir carpetas a la raíz
-app.get('/', getFoldersController);
-app.get('/folder/:id', getSingleFolderController);
-app.delete('/folder/:id', deleteFolderController);
+app.post('/', authorizationUser, newFolderController); //working
+app.get('/', getFoldersController); //working
+app.get('/folder/:id', getSingleFolderController); //working
+app.delete('/folder/:id', authorizationUser, deleteFolderController); //working
 
 //RUTAS DE FILES
 app.get('/files', getFilesController);
