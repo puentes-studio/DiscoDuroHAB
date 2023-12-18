@@ -3,33 +3,49 @@ import getPool from "./getPool.js";
 
 
 const createFile = async (userId, fileName = '') => {
-
     let pool = await getPool();
 
-    const [result] = await pool.query(`INSERT INTO Files (file_name, user_id) VALUES (?, ?)`, [fileName, userId]);
+    try {
+        const [result] = await pool.query(
+            `INSERT INTO Files (file_name, user_id) VALUES (?, ?)`,
+            [fileName, userId]
+        );
 
-    return result.insertId;
-   
+        return result.insertId;
+    } catch (error) {
+        console.error('Error creating file:', error.message);
+        throw error;
+    } finally {
+        if (pool) {
+            pool.release();
+        }
+    }
+};
+
+const updateFileNameById = async (id, newName) => {
+    let pool = await getPool();
+
+    try {
+        const [result] = await pool.query(
+            `UPDATE Files SET file_name = ? WHERE id = ?`,
+            [newName, id]
+        );
+
+        console.log(`File name updated successfully for ID ${id}`);
+    } catch (error) {
+        console.error('Error updating file name:', error.message);
+        throw error;
+    } finally {
+        if (pool) {
+            pool.release();
+        }
+    }
 };
 
 
-//FUNCIÓN PARA RECIBIR UNA LISTA DE TODAS LAS CARPETAS CREADAS
-const getAllFolders = async () => {
-
-    let pool 
-
-    
-     pool = await getPool();
-
-     const [result] = await pool.query(`SELECT * FROM Folders ORDER BY created_at DESC`)
-
-     return result;
-    
-};
 
 
-//FUNCIÓN PARA RECIBIR UNA CARPETA POR SU ID
-const getFolderById = async (id) => {
+const getFileById = async (id) => {
 
     let pool; 
 
@@ -37,7 +53,7 @@ const getFolderById = async (id) => {
      
      pool = await getPool();
 
-     const [result] = await pool.query(`SELECT id, folder_name, user_id FROM Folders WHERE id = ?`, [id]);
+     const [result] = await pool.query(`SELECT id, file_name, user_id FROM Files WHERE id = ?`, [id]);
 
         if (result.length === 0) {
             throw generateError(`La carpeta con id: ${id} no existe`)
@@ -49,8 +65,8 @@ const getFolderById = async (id) => {
 };
 
 
-//FUNCIÓN PARA BORRAR CARPETAS CREADAS SIEMPRE Y CUANDO EL ID DEL USUARIO Y LA CARPETA BORRADA COINCIDA
-const deleteFolderById = async (id) => {
+//Delete a file
+const deleteFileById = async (id) => {
 
     let pool; 
 
@@ -58,11 +74,25 @@ const deleteFolderById = async (id) => {
      
      pool = await getPool();
 
-     await pool.query(`DELETE FROM Folders WHERE id = ?`, [id]);
+     await pool.query(`DELETE FROM Files WHERE id = ?`, [id]);
 
        return;
     
 };
 
+//Get all files
+const getAllFiles = async () => {
 
-export {createFolder, getAllFolders, getFolderById, deleteFolderById};
+    let pool 
+
+    
+     pool = await getPool();
+
+     const [result] = await pool.query(`SELECT * FROM Files ORDER BY created_at DESC`)
+
+     return result;
+    
+};
+
+
+export {createFile, getAllFiles, updateFileNameById, deleteFileById, };
