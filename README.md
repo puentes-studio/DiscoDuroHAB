@@ -1,6 +1,8 @@
 # DiscoDuroHAB
 Second Project of the Bootcamp of Programming and coding in Spain.
 
+*****COLECCIÓN DE PETICIONES A POSTMAN EN LA CARPETA PETICIONES A POSTMAN EN LA RAÍZ DEL PROYECTO
+
 
 ***INSTRUCCIONES DE FUNCIONAMIENTO DE LA API:
 
