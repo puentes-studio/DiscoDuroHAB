@@ -67,4 +67,5 @@ export {
     newFolderController,
     getSingleFolderController,
     deleteFolderController,
+    authorizationUser,
 };

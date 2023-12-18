@@ -31,6 +31,10 @@ En Postman, en la raíz, hacer petición de tipo POST pero, antes, en headers po
 
 4- BORRAR CARPETAS:
 
-En Postman, en la ruta /folder/:id, hacer una petición de tipo DELETE con el usuario interesado en borrar dicha carpeta. En la ruta, tendrá que poner el ID asociado a la carpeta, no al usuario y si el ID del usuario corresponde al del que creó la carpeta, la carpeta será borrada, en caso contrario saldrá un mensaje que avisa de que se está intentando borrar una carpeta que no está asociada a ese ID.
+En Postman, en la ruta /folder/id, hacer una petición de tipo DELETE con el usuario interesado en borrar dicha carpeta. En la ruta, tendrá que poner el ID asociado a la carpeta, no al usuario y si el ID del usuario corresponde al del que creó la carpeta, la carpeta será borrada, en caso contrario saldrá un mensaje que avisa de que se está intentando borrar una carpeta que no está asociada a ese ID.
 
 Hay que diferenciar entre user_id y el id de la carpeta. El id de la carpeta está asociado directamente al Id de usuario, al mismo tiempo, cada carpeta posee un ID propio.
+
+5- CREAR FICHEROS:
+
+En postman, 
