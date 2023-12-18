@@ -190,6 +190,49 @@
 			"response": []
 		},
 		{
+			"name": "Crear Usuario 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_name\": \"Raikonen\",\n    \"email\": \"kimiraikonen@gmail.com\",\n    \"password\": \"f12000\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
 			"name": "Login Usuario",
 			"request": {
 				"method": "POST",
@@ -237,6 +280,40 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"email\": \"audiquattro@gmail.com\",\r\n    \"password\": \"rally80\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Usuario 3",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzAyODkyOTk5LCJleHAiOjE3MDU0ODQ5OTl9.mibIcB6Ez_9rfCH12dQgXcaKgNtvLF5p6ZmCY2bVidA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"kimiraikonen@gmail.com\",\r\n    \"password\": \"f12000\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -309,6 +386,40 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"folderName\": \"Circuitos\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Creación de Carpetas Usuario 3",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNzAyOTM0MDEzLCJleHAiOjE3MDU1MjYwMTN9.VuEv9fTvywcDzVNY-6zCfpgS_gE9M_l3KhaYu08onD8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"folderName\": \"Formula 1\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -419,6 +530,32 @@
 					"path": [
 						"folder",
 						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Carpeta Usuario 3",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNzAyOTM0MDEzLCJleHAiOjE3MDU1MjYwMTN9.VuEv9fTvywcDzVNY-6zCfpgS_gE9M_l3KhaYu08onD8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/folder/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"folder",
+						"9"
 					]
 				}
 			},
