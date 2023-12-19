@@ -22,6 +22,8 @@ const getPool = async () => {
             });
 
             // Ensure that the database creation is successful
+            const createDbQuery = await poolTemp.query(`CREATE DATABASE IF NOT EXISTS ${MYSQL_DB} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`);
+
             const createDbResult = await poolTemp.query(`CREATE DATABASE IF NOT EXISTS ${MYSQL_DB}`);
             console.log('CREATE DATABASE Result:', createDbResult[0]);
 
