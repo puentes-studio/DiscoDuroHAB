@@ -29,7 +29,11 @@ En Postman, en la raíz, hacer petición de tipo POST pero, antes, en headers po
 
 (ES UN EJEMPLO) Esto hará que el usuario logueado haya creado una carpeta asociada a su ID y, además, habrá generado un ID propio para dicha carpeta asociado también al ID del usuario.
 
-4- BORRAR CARPETAS:
+4. OBTENER CARPETAS CREADAS:
+
+En postman en la ruta de la raiz, hacemos la peticion de tipo GET y podremos visualizar todas las carpetas creadas en nuestro disco duro y a que id de usuario pertenece cada una. 
+
+5- BORRAR CARPETAS:
 
 En Postman, en la ruta /folder/id, hacer una petición de tipo DELETE con el usuario interesado en borrar dicha carpeta. En la ruta, tendrá que poner el ID asociado a la carpeta, no al usuario y si el ID del usuario corresponde al del que creó la carpeta, la carpeta será borrada, en caso contrario saldrá un mensaje que avisa de que se está intentando borrar una carpeta que no está asociada a ese ID.
 

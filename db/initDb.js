@@ -55,17 +55,18 @@ const main = async () => {
         // subir, eliminar, renombrar file
 
         await pool.query(`
-            CREATE TABLE IF NOT EXISTS Files (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                user_id INTEGER NOT NULL,
-                file_name VARCHAR(100) NOT NULL,
-                folder_id INT, 
-                created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-                modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                FOREIGN KEY (user_id) REFERENCES Users(id),
-                FOREIGN KEY (folder_id) REFERENCES Folders(id) 
-            )
-        `);
+        CREATE TABLE IF NOT EXISTS Files (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            user_id INTEGER NOT NULL,
+            file_name VARCHAR(100) NOT NULL,
+            folder_id INT, 
+            file_type VARCHAR(255), -- Agregamos la columna file_type
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES Users(id),
+            FOREIGN KEY (folder_id) REFERENCES Folders(id) 
+        )
+    `);
 
 
         console.log('¡Tablas creadas con éxito!⚡');

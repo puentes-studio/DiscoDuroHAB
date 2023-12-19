@@ -17,16 +17,20 @@ const getFilesFromDatabase = async (userId) => {
 };
 
 // Función para crear un archivo en la base de datos
-const createFile = async (userId, fileName, folderId) => {
+const createFile = async (userId, fileName, folderId, fileType) => {
     try {
+        console.log('Creating file with type:', fileType);
+
         let pool = await getPool();
 
         const [result] = await pool.query(`
-            INSERT INTO Files (user_id, file_name, folder_id) VALUES (?, ?, ?)
-        `, [userId, fileName, folderId]);
+            INSERT INTO Files (user_id, file_name, folder_id, file_type) VALUES (?, ?, ?, ?)
+        `, [userId, fileName, folderId, fileType]);
 
         return result.insertId;
     } catch (error) {
+        console.error('Error creating file:', error);
+
         throw generateError('Error al crear el archivo en la base de datos', 500);
     }
 };

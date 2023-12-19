@@ -1,6 +1,8 @@
 import { createFile, getFileById, deleteFileById, getFilesFromDatabase } from "../db/filesDb.js";
 import { generateError } from "../helpers.js";
 import { authorizationUser } from "../middlewares/authorization.js";
+import fileUpload from 'express-fileupload';
+
 
 const getFilesController = async (req, res, next) => {
     try {
@@ -18,13 +20,17 @@ const getFilesController = async (req, res, next) => {
 // Controlador para crear un nuevo archivo
 const newFileController = async (req, res, next) => {
     try {
+        console.log('Request Body:', req.body); // Agrega este log para depuración
+
         const { fileName, folderId } = req.body;
 
         if (!fileName || fileName.length > 100) {
             throw generateError('El archivo debe tener un nombre y estar compuesto por menos de 100 caracteres', 400);
         }
 
-        const id = await createFile(req.userId, fileName, folderId);
+        console.log('User ID:', req.userId); // Agrega este log para depuración
+
+        const id = await createFile(req.userId, fileName, folderId, 'image');
 
         res.send({
             status: 'ok',
