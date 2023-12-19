@@ -1,7 +1,5 @@
 import getPool from './getPool.js'
 
-import getPool from './getPool.js'
-
 const main = async () => {
     // Variable que almacenará una conexión con la base de datos.
     let pool;

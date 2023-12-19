@@ -64,22 +64,30 @@ const deleteFolderById = async (id) => {
     
 };
 
-// Scarlet: funcion para obtener todas las carpetas asociadas a un usuario
-// Estaba funcion no estaba creada
+// SCARLETT: Obtener el ID de la carpeta por su nombre
+const getFolderIdByName = async (folderName) => {
+    let pool;
 
-const getFoldersByUserId = async (userId) => {
-    let pool = await getPool();
+    try {
+        pool = await getPool();
 
-    const [result] = await pool.query(
-        `SELECT * FROM Folders WHERE user_id = ? ORDER BY created_at DESC`,
-        [userId]
-    );
+        const [result] = await pool.query('SELECT id FROM Folders WHERE folder_name = ?', [folderName]);
 
-    //console.log("Datos de las carpetas obtenidos:", result);
+        if (result.length === 0) {
+            throw generateError(`No se encontró la carpeta con el nombre: ${folderName}`, 404);
+        }
 
-    return result;
+        return result[0].id;
+    } catch (error) {
+        throw generateError('Error al obtener el ID de la carpeta por nombre', 500, error);
+    }
 };
 
-
-
-export {createFolder, getAllFolders, getFolderById, deleteFolderById, getFoldersByUserId};
+// Exportar la función
+export {
+    createFolder,
+    getAllFolders,
+    getFolderById,
+    deleteFolderById,
+    getFolderIdByName, // Agregar esta línea
+};
