@@ -64,30 +64,5 @@ const deleteFolderById = async (id) => {
     
 };
 
-// SCARLETT: Obtener el ID de la carpeta por su nombre
-const getFolderIdByName = async (folderName) => {
-    let pool;
 
-    try {
-        pool = await getPool();
-
-        const [result] = await pool.query('SELECT id FROM Folders WHERE folder_name = ?', [folderName]);
-
-        if (result.length === 0) {
-            throw generateError(`No se encontró la carpeta con el nombre: ${folderName}`, 404);
-        }
-
-        return result[0].id;
-    } catch (error) {
-        throw generateError('Error al obtener el ID de la carpeta por nombre', 500, error);
-    }
-};
-
-// Exportar la función
-export {
-    createFolder,
-    getAllFolders,
-    getFolderById,
-    deleteFolderById,
-    getFolderIdByName, // Agregar esta línea
-};
+export {createFolder, getAllFolders, getFolderById, deleteFolderById};

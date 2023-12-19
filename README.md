@@ -35,18 +35,7 @@ En Postman, en la ruta /folder/id, hacer una petición de tipo DELETE con el usu
 
 Hay que diferenciar entre user_id y el id de la carpeta. El id de la carpeta está asociado directamente al Id de usuario, al mismo tiempo, cada carpeta posee un ID propio.
 
-5- CREAR FICHEROS EN RAIZ: 
-{
-    "fileName": "gatos"
-}
+5- BORRAR FICHERO. 
 
+En Postman, en la ruta /file/id, hacer una petición de tipo DELETE con el usuario interesado en borrar dicha carpeta. En la ruta, tendrá que poner el ID asociado al fichero, si el ID del usuario corresponde al del que creó el fichero, el fichero será borrado, 
 
-6- CREAR FICHEROS EN CARPETAS:
-
-En postman, poner la dirección http con terminación /files y hacer petición de tipo POST completando los datos del siguiente JSON:
-
-{
-"fileName": "Nombre_de_fichero",
-"folderName" : "Nombre_de_carpeta"
-}
-(ES UN EJEMPLO) Esto crea un archivo vinculado al usuario mediante su ID y a una carpeta identificada por su propio ID. Además, se asigna un ID único al archivo, asociado tanto al usuario como a la carpeta.

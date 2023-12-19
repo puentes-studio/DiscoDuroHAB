@@ -1,7 +1,6 @@
+import { createFile, getFileById, deleteFileById, getFilesFromDatabase } from "../db/filesDb.js";
 import { generateError } from "../helpers.js";
-import jsonwebtoken from 'jsonwebtoken';
-import { getFilesFromDatabase, createFileInDatabase, getSingleFileFromDatabase, deleteFileFromDatabase } from "../db/files.js";
-import { getFolderIdByName } from "../db/folders.js";
+import { authorizationUser } from "../middlewares/authorization.js";
 
 const getFilesController = async (req, res, next) => {
     try {
@@ -16,44 +15,33 @@ const getFilesController = async (req, res, next) => {
         next(error);
     }
 };
-
+// Controlador para crear un nuevo archivo
 const newFileController = async (req, res, next) => {
     try {
-        const userId = req.userId;
-        const { fileName, folderName } = req.body;
+        const { fileName, folderId } = req.body;
 
-        if (!fileName) {
-            throw generateError('Debes proporcionar un nombre para el archivo', 400);
+        if (!fileName || fileName.length > 100) {
+            throw generateError('El archivo debe tener un nombre y estar compuesto por menos de 100 caracteres', 400);
         }
 
-        let folderId = null;
+        const id = await createFile(req.userId, fileName, folderId);
 
-        if (folderName) {
-            folderId = await getFolderIdByName(folderName);
-        }
-
-        const fileId = await createFileInDatabase(userId, fileName, folderId);
-
-        res.status(201).json({
+        res.send({
             status: 'ok',
-            message: `Nuevo archivo creado con id: ${fileId}`,
+            message: `Nuevo archivo creado correctamente con id: ${id}`
         });
     } catch (error) {
         next(error);
     }
 };
 
+// Controlador para obtener la información de un archivo por su ID
 const getSingleFileController = async (req, res, next) => {
     try {
-        const userId = req.userId;
         const { id } = req.params;
-        const file = await getSingleFileFromDatabase(userId, id);
+        const file = await getFileById(id);
 
-        if (!file) {
-            throw generateError('No se encontró el archivo con el ID proporcionado', 404);
-        }
-
-        res.json({
+        res.send({
             status: 'ok',
             data: file,
         });
@@ -62,20 +50,15 @@ const getSingleFileController = async (req, res, next) => {
     }
 };
 
+// Controlador para borrar un archivo por su ID
 const deleteFileController = async (req, res, next) => {
     try {
-        const userId = req.userId;
         const { id } = req.params;
+        await deleteFileById(id);
 
-        const deletedFileCount = await deleteFileFromDatabase(userId, id);
-
-        if (deletedFileCount === 0) {
-            throw generateError('No se encontró el archivo con el ID proporcionado', 404);
-        }
-
-        res.json({
+        res.send({
             status: 'ok',
-            message: 'Archivo eliminado con éxito',
+            message: `El archivo con id: ${id} fue borrado`,
         });
     } catch (error) {
         next(error);
