@@ -33,11 +33,13 @@ dotenv.config();
 
 const app = express();
 
+// compruebo si el directorios static existe, si no existe lo creo
+
 
 app.use(fileUpload()); //Middleware que permitirá subir archivos (TRABAJANDO EN ELLO)
 app.use(express.json()); //Middleware que trata de procesar las peticiones a formato JSON
 app.use(morgan('dev')); //Middleware de Gestión de Peticiones
-app.use('/uploads', express.static('./uploads')); //De esta forma todas los archivos subidos quedan almacenados en este directorio
+app.use(express.static('./uploads')); //De esta forma todas los archivos subidos quedan almacenados en este directorio
 
 
 //RUTAS DE USUARIO
