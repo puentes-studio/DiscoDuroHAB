@@ -2,6 +2,11 @@ import getPool from "./getPool.js"; //Conexión con nuestra base de datos
 import {generateError} from "../helpers.js"; //Importamos gestor de errores de helpers.js
 import bcrypt from 'bcrypt';
 
+import { readFileSync } from 'fs';
+import { readFile } from 'fs/promises';
+import { outputFile, outputFileSync } from 'fs-extra/esm';
+import path from "path";
+
 //FUNCIÓN QUE DEVUELVE LA INFORMACIÓN PÚBLICA DE UN USUARIO A TRAVÉS DE SU ID
 const getUserById = async (id) => {
 
@@ -19,10 +24,6 @@ const getUserById = async (id) => {
 
 
 //FUNCIÓN PARA CREAR USUARIO EN BASE DE DATOS Y GENERAR ID
-const fs = require('fs').promises;
-const path = require('path');
-const bcrypt = require('bcrypt');
-const { getPool, generateError } = require('./your-utils');
 
 const crearUsuario = async (user_name, email, password) => {
     let pool = await getPool();
