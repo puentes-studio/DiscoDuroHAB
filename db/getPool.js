@@ -4,52 +4,42 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const {
-    MYSQL_HOST = 'localhost',
-    MYSQL_USER = 'root',
-    MYSQL_PASS = '80901452vBP',
-    MYSQL_DB = 'DISCO_DURO'
+    MYSQL_HOST,
+    MYSQL_USER,
+    MYSQL_PASS,
+    MYSQL_DB
 } = process.env;
 
 let pool;
 
-const getPool = async () => {
-    try {
-        if (!pool) {
+const getPool = async () =>{
+    try { //Inicia TRY
+        if(!pool){ //Verifico que el pool no esté inicializado anteriormente
+
+            //Crear pool temporal para dar de alta la Base si es que no existe
             const poolTemp = mysql.createPool({
-                host: MYSQL_HOST,
-                user: MYSQL_USER,
-                password: MYSQL_PASS,
-            });
+                host: MYSQL_HOST, //envio el host para la conexión
+                user: MYSQL_USER, //envio el user 
+                password: MYSQL_PASS, //envio el password
+            })
 
-            // Ensure that the database creation is successful
-            const createDbQuery = await poolTemp.query(`CREATE DATABASE IF NOT EXISTS ${MYSQL_DB} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`);
+            await poolTemp.query(`CREATE DATABASE IF NOT EXISTS ${MYSQL_DB}`);
 
-            const createDbResult = await poolTemp.query(`CREATE DATABASE IF NOT EXISTS ${MYSQL_DB}`);
-            console.log('CREATE DATABASE Result:', createDbResult[0]);
+            pool = mysql.createPool({ //Comienzo a crear el pool mediante MYSQL y le envío un objeto
+                host: MYSQL_HOST, //envio el host para la conexión
+                user: MYSQL_USER, //envio el user 
+                password: MYSQL_PASS, //envio el password
+                connectionLimit: 10, //determino la cantidad máxima de conexiones (10 por poner 10)
+                database: MYSQL_DB, //determino la base a la cual conectarme
+                timezone: 'Z' //Z para horario UTC (horario global)
+            }) //cierro el createPool
 
-            if (createDbResult[0].warningStatus === 0) {
-                console.log(`Database '${MYSQL_DB}' created successfully.`);
-            } else {
-                console.error(`Failed to create database '${MYSQL_DB}'.`);
-                throw new Error(`Failed to create database '${MYSQL_DB}'.`);
-            }
+        } //cierro el if donde valido si no está inicializado el pool
 
-            pool = mysql.createPool({
-                host: MYSQL_HOST,
-                user: MYSQL_USER,
-                password: MYSQL_PASS,
-                connectionLimit: 10,
-                database: MYSQL_DB,
-                timezone: 'Z'
-            });
-            console.log('MySQL connection pool initialized.');
-        }
-
-        return pool;
-    } catch (error) {
-        console.error(error);
-        throw new Error('Failed to initialize MySQL connection pool.');
-    }
+        return pool; //devuelvo el pool ya creado
+    } catch (error) { //catcheo el error, recibo error como variable
+        console.error(error) //muestro el error
+    } //finaliza el trycatch
 }
 
 export default getPool;
