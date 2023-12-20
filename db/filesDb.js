@@ -1,5 +1,6 @@
 import getPool from "./getPool.js";
 import { generateError } from "../helpers.js";
+import path from 'path';
 
 // Función para obtener todos los archivos de un usuario por su ID
 const getFilesFromDatabase = async (userId) => {
@@ -17,15 +18,25 @@ const getFilesFromDatabase = async (userId) => {
 };
 
 // Función para crear un archivo en la base de datos
-const createFile = async (userId, fileName, folderId, fileType) => {
+const createFile = async (userId, fileNameObject, folderId, fileType) => {
     try {
-        console.log('Creating file with type:', fileType);
 
         let pool = await getPool();
 
+        // guardo file en el directorio static
+        // FIXME: tenemos que poner en el path el id del usuario y el nombre de la subcarpeta. 
+        
+        const filePath = path.join(process.cwd(), 'uploads', fileNameObject.name);
+
+        //console.log(filePath);
+
+        fileNameObject.mv(filePath);
+
+        console.log(">>>>>", userId)
+
         const [result] = await pool.query(`
             INSERT INTO Files (user_id, file_name, folder_id, file_type) VALUES (?, ?, ?, ?)
-        `, [userId, fileName, folderId, fileType]);
+        `, [userId, fileNameObject.name, folderId, fileNameObject.mimetype]);
 
         return result.insertId;
     } catch (error) {

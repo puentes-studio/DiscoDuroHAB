@@ -55,7 +55,7 @@ app.delete('/folder/:id', authorizationUser, deleteFolderController); //working
 
 //RUTAS DE FILES
 app.get('/files', getFilesController);
-app.post('/files', newFileController);
+app.post('/files', authorizationUser, newFileController);
 app.get('/file/:id', getSingleFileController);
 app.delete('/file/:id', deleteFileController);
 

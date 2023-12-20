@@ -20,17 +20,16 @@ const getFilesController = async (req, res, next) => {
 // Controlador para crear un nuevo archivo
 const newFileController = async (req, res, next) => {
     try {
-        console.log('Request Body:', req.body); // Agrega este log para depuración
+    
+        const { folderId } = req.body;
+        const fileNameObject = req.files.fileName;
+    
 
-        const { fileName, folderId } = req.body;
-
-        if (!fileName || fileName.length > 100) {
-            throw generateError('El archivo debe tener un nombre y estar compuesto por menos de 100 caracteres', 400);
+        if (!fileNameObject ){
+            throw generateError('Falta file', 400);
         }
 
-        console.log('User ID:', req.userId); // Agrega este log para depuración
-
-        const id = await createFile(req.userId, fileName, folderId, 'image');
+        const id = await createFile(req.userId, fileNameObject, folderId);
 
         res.send({
             status: 'ok',
