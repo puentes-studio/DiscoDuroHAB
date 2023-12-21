@@ -1,6 +1,9 @@
 import { createFolder, deleteFolderById, getAllFolders, getFolderById } from "../db/folders.js";
 import { generateError } from "../helpers.js";
 import { authorizationUser } from "../middlewares/authorization.js";
+import fs from "fs/promises";
+import path from "path";
+
 
 //A LOS CONTROLADORES DE AQUÍ ABAJO SOLO DEBEN ACCEDER USUARIOS REGISTRADOS CON UN TOKEN VERIFICADO
 
@@ -15,7 +18,16 @@ const newFolderController = async (req, res, next) => {
             throw generateError('La carpeta debe de tener un nombre y estar compuesto por menos de 100 caracteres', 400);
         }
 
+        
         const id = await createFolder(req.userId, folderName);
+        
+        const pathFolder = path.join(process.cwd() ,"uploads", String(req.userId), String(id));
+
+        try {
+            await fs.mkdir(pathFolder);
+          } catch (error) {
+            throw generateError("Error creating user folder", 500);
+          }
 
         res.send({
             status: 'ok',

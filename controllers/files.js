@@ -22,14 +22,14 @@ const newFileController = async (req, res, next) => {
     try {
     
         const { folderId } = req.body;
-        const fileNameObject = req.files.fileName;
+        const fileObject = req.files.fileToUpload;
     
 
-        if (!fileNameObject ){
+        if (!fileObject ){
             throw generateError('Falta file', 400);
         }
 
-        const id = await createFile(req.userId, fileNameObject, folderId);
+        const id = await createFile(req.userId, fileObject, folderId);
 
         res.send({
             status: 'ok',

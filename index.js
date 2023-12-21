@@ -3,6 +3,11 @@ import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import fileUpload from 'express-fileupload'; //Esto en un futuro servirá para subir ARCHIVOS a la tabla de FILES (TRABAJANDO EN ELLO)
+import path from 'path';
+import fs from 'fs';
+import { readFileSync } from 'fs';
+import { readFile } from 'fs/promises';
+import { outputFile, outputFileSync } from 'fs-extra/esm';
 
 import {
     newUserController,
@@ -39,7 +44,7 @@ const app = express();
 app.use(fileUpload()); //Middleware que permitirá subir archivos (TRABAJANDO EN ELLO)
 app.use(express.json()); //Middleware que trata de procesar las peticiones a formato JSON
 app.use(morgan('dev')); //Middleware de Gestión de Peticiones
-app.use(express.static('./uploads')); //De esta forma todas los archivos subidos quedan almacenados en este directorio
+app.use(express.static('uploads')); //De esta forma todas los archivos subidos quedan almacenados en este directorio
 
 
 //RUTAS DE USUARIO
