@@ -14,17 +14,34 @@ const createFolder = async (userId, folderName = '') => {
 
 
 //FUNCIÓN PARA RECIBIR UNA LISTA DE TODAS LAS CARPETAS CREADAS
-const getAllFolders = async () => {
+const getAllFoldersWithFiles = async () => {
+    let pool;
 
-    let pool 
+    try {
+        pool = await getPool();
 
-    
-     pool = await getPool();
+        // Obtener todas las carpetas ordenadas por fecha de creación
+        const [foldersResult] = await pool.query(`SELECT * FROM Folders ORDER BY created_at DESC`);
 
-     const [result] = await pool.query(`SELECT * FROM Folders ORDER BY created_at DESC`)
+        // Para cada carpeta, obtener los archivos asociados
+        const foldersWithFiles = await Promise.all(
+            foldersResult.map(async (folder) => {
+                // Consulta para obtener los archivos de esta carpeta
+                const [filesResult] = await pool.query(`SELECT * FROM Files WHERE folder_id = ?`, [folder.id]);
 
-     return result;
-    
+                // Devolver objeto con la carpeta y sus archivos
+                return {
+                    folder,
+                    files: filesResult,
+                };
+            })
+        );
+
+        return foldersWithFiles;
+    } catch (error) {
+        // Manejo de errores
+        throw new Error('Error al obtener carpetas y archivos');
+    }
 };
 
 
@@ -65,4 +82,4 @@ const deleteFolderById = async (id) => {
 };
 
 
-export {createFolder, getAllFolders, getFolderById, deleteFolderById};
+export {createFolder, getAllFoldersWithFiles, getFolderById, deleteFolderById};

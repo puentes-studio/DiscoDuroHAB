@@ -65,7 +65,7 @@ const crearUsuario = async (user_name, email, password) => {
   try {
     await fs.mkdir(userFolder);
   } catch (error) {
-    throw generateError("Error creating user folder", 500);
+    throw generateError("Error creando carpeta de usuario", 500);
   }
 
   return userId;

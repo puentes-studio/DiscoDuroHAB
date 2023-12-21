@@ -1,4 +1,4 @@
-import { createFolder, deleteFolderById, getAllFolders, getFolderById } from "../db/folders.js";
+import { createFolder, deleteFolderById, getAllFoldersWithFiles, getFolderById } from "../db/folders.js";
 import { generateError } from "../helpers.js";
 import { authorizationUser } from "../middlewares/authorization.js";
 import fs from "fs/promises";
@@ -26,7 +26,7 @@ const newFolderController = async (req, res, next) => {
         try {
             await fs.mkdir(pathFolder);
           } catch (error) {
-            throw generateError("Error creating user folder", 500);
+            throw generateError("Error creando carpeta de usuario", 500);
           }
 
         res.send({
@@ -39,10 +39,10 @@ const newFolderController = async (req, res, next) => {
 };
 
 
-const getFoldersController = async (req, res, next) => { //Función que devuelve un listado de las carpetas creadas en la base de datos
+const getFoldersController = async (req, res, next) => { //Función que devuelve un listado de las carpetas creadas en la base de datos y los archivos del interior
     try {
 
-        const folders = await getAllFolders();
+        const folders = await getAllFoldersWithFiles();
 
         res.send({
             status: 'ok',
