@@ -42,7 +42,9 @@ const newFolderController = async (req, res, next) => {
 const getFoldersController = async (req, res, next) => { //Función que devuelve un listado de las carpetas creadas en la base de datos y los archivos del interior
     try {
 
-        const folders = await getAllFoldersWithFiles();
+        const userId = req.user.id;
+
+        const folders = await getAllFoldersWithFiles(userId);
 
         res.send({
             status: 'ok',

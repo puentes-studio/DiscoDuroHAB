@@ -2,7 +2,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
-import fileUpload from 'express-fileupload'; //Esto en un futuro servirá para subir ARCHIVOS a la tabla de FILES (TRABAJANDO EN ELLO)
+import fileUpload from 'express-fileupload'; //Esto en un futuro servirá para subir ARCHIVOS a la tabla de FILES
+import cors from 'cors';
 import path from 'path';
 import fs from 'fs';
 import { readFileSync } from 'fs';
@@ -46,6 +47,7 @@ app.use(fileUpload()); //Middleware que permitirá subir archivos
 app.use(express.json()); //Middleware que trata de procesar las peticiones a formato JSON
 app.use(morgan('dev')); //Middleware de Gestión de Peticiones
 app.use(express.static('uploads')); //De esta forma todas los archivos subidos quedan almacenados en este directorio
+app.use(cors());
 
 
 //RUTAS DE USUARIO

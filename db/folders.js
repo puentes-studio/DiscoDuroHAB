@@ -21,7 +21,7 @@ const getAllFoldersWithFiles = async () => {
         pool = await getPool();
 
         // Obtener todas las carpetas ordenadas por fecha de creación
-        const [foldersResult] = await pool.query(`SELECT * FROM Folders ORDER BY created_at DESC`);
+        const [foldersResult] = await pool.query(`SELECT * FROM Folders WHERE user_id = ? ORDER BY created_at DESC`, [user.id]);
 
         // Para cada carpeta, obtener los archivos asociados
         const foldersWithFiles = await Promise.all(

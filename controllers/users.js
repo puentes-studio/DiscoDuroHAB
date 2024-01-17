@@ -60,7 +60,7 @@ const loginController = async (req, res, next) => {
         const validPassword = await bcrypt.compare(password, user.password);
 
         if(!validPassword) {
-            throw generateError('Contraseña incorrecta', 401);
+            throw generateError('Error de autenticación. Inténtelo de nuevo.', 401);
         }
 
      //Se crea el PayLoad del Token

@@ -74,6 +74,7 @@ const main = async () => {
         console.error(err);
     } finally {
         // Cerramos el proceso.
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Espera 1 segundo antes de salir 
         process.exit();
     }
 };
