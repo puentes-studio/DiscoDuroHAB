@@ -37,6 +37,7 @@ dotenv.config();
 
 
 const app = express();
+const APIPORT = process.env.APIPORT || 8080;
 
 // compruebo si el directorios static existe, si no existe lo creo
 
@@ -85,6 +86,6 @@ app.use((error, req, res, next) => {
 
 
 //LANZAR SERVIDOR
-app.listen(8080,()=>{
-    console.log('Servidor funcionando exitosamente en el puerto 8080: http://localhost:8080 ⚡');
+app.listen(APIPORT,()=>{
+    console.log('Servidor funcionando exitosamente en el puerto ${APIPORT}: http://localhost:${APIPORT} ⚡');
 });
