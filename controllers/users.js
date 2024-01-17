@@ -3,7 +3,7 @@ import {crearUsuario, getUserByEmail, getUserById} from "../db/usersDb.js";
 import bcrypt from 'bcrypt';
 import jsonwebtoken from 'jsonwebtoken';
 
-const newUserController = async (req, res, next) => {  //FUNCIONANDO
+const newUserController = async (req, res, next) => {  
     try {
         const { user_name, email, password } = req.body;
 
@@ -28,7 +28,7 @@ const newUserController = async (req, res, next) => {  //FUNCIONANDO
     }
 };
 
-const getUserController = async (req, res, next) => {  //FUNCIONANDO
+const getUserController = async (req, res, next) => {  
     try {
         
         const {id} = req.params;
@@ -44,7 +44,7 @@ const getUserController = async (req, res, next) => {  //FUNCIONANDO
     }
 };
 
-const loginController = async (req, res, next) => {  //FUNCIONANDO
+const loginController = async (req, res, next) => {  
     try {
 
         const {email, password} = req.body;

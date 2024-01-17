@@ -2,7 +2,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
-import fileUpload from 'express-fileupload'; //Esto en un futuro servirá para subir ARCHIVOS a la tabla de FILES (TRABAJANDO EN ELLO)
+import fileUpload from 'express-fileupload'; 
 
 import {
     newUserController,
@@ -34,22 +34,22 @@ dotenv.config();
 const app = express();
 
 
-app.use(fileUpload()); //Middleware que permitirá subir archivos (TRABAJANDO EN ELLO)
+app.use(fileUpload()); //Middleware que permitirá subir archivos 
 app.use(express.json()); //Middleware que trata de procesar las peticiones a formato JSON
 app.use(morgan('dev')); //Middleware de Gestión de Peticiones
 app.use('/uploads', express.static('./uploads')); //De esta forma todas los archivos subidos quedan almacenados en este directorio
 
 
 //RUTAS DE USUARIO
-app.post('/users', newUserController); //working
-app.get('/users/:id', getUserController); //working
-app.post('/login', loginController); //working
+app.post('/users', newUserController);
+app.get('/users/:id', getUserController); 
+app.post('/login', loginController); 
 
 //RUTAS DE FOLDERS
-app.post('/', authorizationUser, newFolderController); //working
-app.get('/', getFoldersController); //working
-app.get('/folder/:id', getSingleFolderController); //working
-app.delete('/folder/:id', authorizationUser, deleteFolderController); //working
+app.post('/', authorizationUser, newFolderController); 
+app.get('/', getFoldersController); 
+app.get('/folder/:id', getSingleFolderController); 
+app.delete('/folder/:id', authorizationUser, deleteFolderController); 
 
 //RUTAS DE FILES
 app.get('/files', getFilesController);
