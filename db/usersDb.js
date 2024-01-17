@@ -52,7 +52,6 @@ const crearUsuario = async (user_name, email, password) => {
   //Encriptar la password
   const passwordEncrypt = await bcrypt.hash(password, 8); //8 son las vueltas que da a la encriptación para mayor seguridad de la contraseña
 
-  //NUEVO CODIGO
   const newUser = await pool.query(
     `INSERT INTO Users (user_name, email, password) VALUES (?, ?, ?)`,
     [user_name, email, passwordEncrypt]

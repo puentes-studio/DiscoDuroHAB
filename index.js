@@ -41,22 +41,22 @@ const app = express();
 // compruebo si el directorios static existe, si no existe lo creo
 
 
-app.use(fileUpload()); //Middleware que permitirá subir archivos (TRABAJANDO EN ELLO)
+app.use(fileUpload()); //Middleware que permitirá subir archivos 
 app.use(express.json()); //Middleware que trata de procesar las peticiones a formato JSON
 app.use(morgan('dev')); //Middleware de Gestión de Peticiones
 app.use(express.static('uploads')); //De esta forma todas los archivos subidos quedan almacenados en este directorio
 
 
 //RUTAS DE USUARIO
-app.post('/users', newUserController); //working
-app.get('/users/:id', getUserController); //working
-app.post('/login', loginController); //working
+app.post('/users', newUserController); 
+app.get('/users/:id', getUserController); 
+app.post('/login', loginController); 
 
 //RUTAS DE FOLDERS
-app.post('/', authorizationUser, newFolderController); //working
-app.get('/', getFoldersController); //working
-app.get('/folder/:id', getSingleFolderController); //working
-app.delete('/folder/:id', authorizationUser, deleteFolderController); //working
+app.post('/', authorizationUser, newFolderController); 
+app.get('/', getFoldersController); 
+app.get('/folder/:id', getSingleFolderController); 
+app.delete('/folder/:id', authorizationUser, deleteFolderController); 
 
 //RUTAS DE FILES
 app.get('/files', getFilesController);
