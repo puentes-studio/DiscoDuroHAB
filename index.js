@@ -60,14 +60,17 @@ app.post('/', authorizationUser, newFolderController);
 
 app.get('/', authorizationUser, getFoldersController); 
 
-//app.get('/folder/:id', authorizationUser, isMyFolder, getSingleFolderController); 
-//app.delete('/folder/:id', authorizationUser, isMyFolder,  deleteFolderController); 
+//app.get('/folder/:id', authorizationUser, isMyFolder, getSingleFolderController); TRABAJAR EN EL FUTURO
+app.get('/folder/:id', authorizationUser, getSingleFolderController);
+//app.delete('/folder/:id', authorizationUser, isMyFolder,  deleteFolderController); TRABAJAR EN EL FUTURO
+app.delete('/folder/:id', authorizationUser, deleteFolderController);
 
 //RUTAS DE FILES
 app.get('/files', getFilesController);
 app.post('/files', authorizationUser, newFileController);
-//app.get('/file/:id', authorizationUser, isMyFile, getSingleFileController);
-//app.delete('/file/:id', authorizationUser, isMyFile, deleteFileController);
+//app.get('/file/:id', authorizationUser, isMyFile, getSingleFileController); TRABAJAR EN EL FUTURO
+app.get('/file/:id', authorizationUser, getSingleFileController);
+//app.delete('/file/:id', authorizationUser, isMyFile, deleteFileController); TRABAJAR EN EL FUTURO
 app.delete('/file/:id', authorizationUser, deleteFileController);
 
 // Middleware 404 NOT FOUND
