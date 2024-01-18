@@ -1,7 +1,9 @@
+import path from "path";
 import { createFile, getFileById, deleteFileById, getFilesFromDatabase } from "../db/filesDb.js";
 import { generateError } from "../helpers.js";
 import { authorizationUser } from "../middlewares/authorization.js";
 import fileUpload from 'express-fileupload';
+import { fstat } from "fs";
 
 
 const getFilesController = async (req, res, next) => {
@@ -59,7 +61,22 @@ const getSingleFileController = async (req, res, next) => {
 const deleteFileController = async (req, res, next) => {
     try {
         const { id } = req.params;
-        await deleteFileById(id);
+
+       // borrar file en uploads
+       // 1 obtener las info del file desde DB
+       const [dataFile] = await getFileById(id)
+       console.log(dataFile)
+
+       // compongo path file utilizando dataFile: wd/uploads/iduser/idcarpeta/filename
+       //if(dataFile.folderid)
+        //const pathFile = path.join(process.cwd(), "uploads", req.userId, folderid, nombrefile )
+       //else
+          //const pathFile = path.join(process.cwd(), "uploads", req.userId, nombrefile )
+
+       // borro file
+       //fs.ulink(pathFile)
+
+       // await deleteFileById(id_file);
 
         res.send({
             status: 'ok',

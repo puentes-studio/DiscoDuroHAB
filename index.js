@@ -57,15 +57,18 @@ app.post('/login', loginController);
 
 //RUTAS DE FOLDERS
 app.post('/', authorizationUser, newFolderController); 
-app.get('/', getFoldersController); 
-app.get('/folder/:id', getSingleFolderController); 
-app.delete('/folder/:id', authorizationUser, deleteFolderController); 
+
+app.get('/', authorizationUser, getFoldersController); 
+
+//app.get('/folder/:id', authorizationUser, isMyFolder, getSingleFolderController); 
+//app.delete('/folder/:id', authorizationUser, isMyFolder,  deleteFolderController); 
 
 //RUTAS DE FILES
 app.get('/files', getFilesController);
 app.post('/files', authorizationUser, newFileController);
-app.get('/file/:id', getSingleFileController);
-app.delete('/file/:id', deleteFileController);
+//app.get('/file/:id', authorizationUser, isMyFile, getSingleFileController);
+//app.delete('/file/:id', authorizationUser, isMyFile, deleteFileController);
+app.delete('/file/:id', authorizationUser, deleteFileController);
 
 // Middleware 404 NOT FOUND
 app.use((req, res) => {
