@@ -22,7 +22,6 @@ const authorizationUser = (req, res, next) => {
     }
 
     //Introducimos la información del TOKEN en la petición para usarla en el controlador
-    console.log(token)
     req.userId = token.id;
 
     //Saltamos al controlador

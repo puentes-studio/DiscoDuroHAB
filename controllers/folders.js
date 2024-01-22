@@ -86,7 +86,12 @@ const deleteFolderController = async (req, res, next) => { //Función que permit
         if(req.userId !== folder.user_id) {
              throw generateError('Estás intentando borrar una carpeta que no es tuya', 401);
          };
-        //Borrar carpeta
+
+         // Si la carpeta no esta vacia devuelvo error/messaje
+
+         // Booro carpeta en FS
+
+        //Borrar carpeta en el DB
          await deleteFolderById(id);
 
 

@@ -78,7 +78,7 @@ const createFile = async (userId, fileObject, folderId) => {
 
 // Función para obtener la información de un archivo por su ID
 const getFileById = async (id) => {
-  try {
+  
     let pool = await getPool();
 
     const [result] = await pool.query(
@@ -88,14 +88,14 @@ const getFileById = async (id) => {
       [id]
     );
 
+    console.log("result", result)
+
     if (result.length === 0) {
       throw generateError(`El archivo con id: ${id} no existe`, 404);
     }
 
     return result[0];
-  } catch (error) {
-    throw generateError("Error al obtener la información del archivo", 500);
-  }
+  
 };
 
 // Función para borrar un archivo por su ID

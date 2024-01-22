@@ -95,5 +95,5 @@ app.use((error, req, res, next) => {
 
 //LANZAR SERVIDOR
 app.listen(APIPORT,()=>{
-    console.log('Servidor funcionando exitosamente en el puerto ${APIPORT}: http://localhost:${APIPORT} ⚡');
+    console.log(`Servidor funcionando exitosamente en el puerto ${APIPORT}: http://localhost:${APIPORT} ⚡`);
 });
