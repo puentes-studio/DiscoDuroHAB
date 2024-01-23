@@ -1,3 +1,4 @@
+import { getFilesFromDatabase } from "../db/filesDb.js";
 import { createFolder, deleteFolderById, getAllFoldersWithFiles, getFolderById } from "../db/folders.js";
 import { generateError } from "../helpers.js";
 import { authorizationUser } from "../middlewares/authorization.js";
@@ -89,7 +90,20 @@ const deleteFolderController = async (req, res, next) => { //Función que permit
 
          // Si la carpeta no esta vacia devuelvo error/messaje
 
-         // Booro carpeta en FS
+        const folderContents = await getFilesFromDatabase(req.userId, id);
+
+        if (folderContents.length > 0) {
+            throw generateError('No se puede eliminar una carpeta no vacía. Elimina los archivos/carpetas de su interior primero', 400);
+        };
+
+        const pathFolder = path.join(process.cwd(), "uploads", `${req.userId}`, id);
+
+         // Borro carpeta en FS
+         console.log('Ruta de la carpeta a eliminar:', pathFolder);
+
+         await fs.promises.rm(pathFolder, {recursive: true}); //DA ERROR .rm undefined
+
+    
 
         //Borrar carpeta en el DB
          await deleteFolderById(id);
@@ -100,6 +114,7 @@ const deleteFolderController = async (req, res, next) => { //Función que permit
             message: `La carpeta con id: ${id} fue borrada`,
         });
      } catch (error) {
+        console.error('Error durante la eliminación de la carpeta:', error);
         next(error);
      }
 };
