@@ -101,7 +101,7 @@ const deleteFolderController = async (req, res, next) => { //Función que permit
          // Borro carpeta en FS
          console.log('Ruta de la carpeta a eliminar:', pathFolder);
 
-         await fs.promises.rm(pathFolder, {recursive: true}); //DA ERROR .rm undefined
+         await fs.rm(pathFolder, {recursive: true}); //DA ERROR .rm undefined
 
     
 
