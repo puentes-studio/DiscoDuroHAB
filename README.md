@@ -1,5 +1,9 @@
 PROYECTO 2: DISCO DURO ONLINE - HACK A BOSS BOOTCAMP - MOHA, SCARLETT, VLADIMIR Y GONZALO J.R.
 
+1- Iniciamos la DataBase en la terminal con "node db/initDb.js"
+
+2- Iniciamos la API y el servidor con "npm run dev"
+
 *****COLECCIÓN DE PETICIONES A POSTMAN EN LA CARPETA PETICIONES A POSTMAN EN LA RAÍZ DEL PROYECTO
 
 **LA LISTA DE PETICIONES ES LA SIGUIENTE:
@@ -22,14 +26,17 @@ PROYECTO 2: DISCO DURO ONLINE - HACK A BOSS BOOTCAMP - MOHA, SCARLETT, VLADIMIR 
 
  9- Borrar File por ID de File
 
+ 10- Borrar File por ID de File Usuario 2
 
+ 11- Borrar Carpeta Usuario 2 con archivos en su interior (no lo va a permitir porque la carpeta tiene que estar vacía primero)
 
- *LA CARPETA EXTRA DENTRO DE LA COLECCIÓN DE POSTMAN CONTIENE PETICIONES CON FALLOS HECHOS ADREDE PARA PROBAR QUÉ PASA EN DIFERENTES SITUACIONES, POR EJEMPLO QUE UN USUARIO INTENTE BORRAR UNA CARPETA QUE NO ES SUYA.
+ 12- Borrar Carpeta Vacía Usuario 2 (va a dejar borrarla con éxito, pues no tiene archivos en su interior)
 
- 
+ 13- EXTRA: contiene una serie de peticiones erróneas con sus correspondientes mensajes.
 
+ ** COMENTARIOS SOBRE EL FUNCIONAMIENTO DE LA API:
 
- ***COMENTARIOS:
+ Un usuario al crear su perfil en esta aplicación, desde el momento que queda registrado, automáticamente se le crea una "espacio" o "raíz" desde el que puede subir archivos directamente a la propia raíz o, por el contrario, puede crear carpetas dentro de la raíz para subir los archivos dentro de esas carpetas.
 
- AQUÍ ENTREGAMOS LOS REQUISITOS MÍNIMOS EXIGIDOS PARA EL PROYECTO, SIN EMBARGO, ESTE CÓDIGO SE IRÁ COMPLETANDO, DEPURANDO Y PERFECCIONANDO CON NUEVAS FUNCIONES DE CARA AL PROYECTO FINAL PARA OFRECER UNA EXPERIENCIA DE USUARIO LO MÁS COMPLETA Y SATISFACTORIA POSIBLE.
+ Por seguridad, un usuario no puede acceder a la información de otro usuario ni manipular, visualizar o borrar archivos quue no coincidan con su ID.
 

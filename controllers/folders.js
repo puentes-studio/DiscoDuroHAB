@@ -1,7 +1,6 @@
 import { getFilesFromDatabase } from "../db/filesDb.js";
 import { createFolder, deleteFolderById, getAllFoldersWithFiles, getFolderById } from "../db/folders.js";
 import { generateError } from "../helpers.js";
-import { authorizationUser } from "../middlewares/authorization.js";
 import fs from "fs/promises";
 import path from "path";
 
@@ -88,8 +87,7 @@ const deleteFolderController = async (req, res, next) => { //Función que permit
              throw generateError('Estás intentando borrar una carpeta que no es tuya', 401);
          };
 
-         // Si la carpeta no esta vacia devuelvo error/messaje
-
+         // Si la carpeta no esta vacia devuelvo un error
         const folderContents = await getFilesFromDatabase(req.userId, id);
 
         if (folderContents.length > 0) {
@@ -101,7 +99,7 @@ const deleteFolderController = async (req, res, next) => { //Función que permit
          // Borro carpeta en FS
          console.log('Ruta de la carpeta a eliminar:', pathFolder);
 
-         await fs.rm(pathFolder, {recursive: true}); //DA ERROR .rm undefined
+         await fs.rm(pathFolder, {recursive: true}); 
 
     
 

@@ -2,13 +2,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
-import fileUpload from 'express-fileupload'; //Esto en un futuro servirá para subir ARCHIVOS a la tabla de FILES
+import fileUpload from 'express-fileupload'; 
 import cors from 'cors';
-import path from 'path';
-import fs from 'fs';
-import { readFileSync } from 'fs';
-import { readFile } from 'fs/promises';
-import { outputFile, outputFileSync } from 'fs-extra/esm';
 
 import {
     newUserController,
@@ -60,17 +55,13 @@ app.post('/', authorizationUser, newFolderController);
 
 app.get('/', authorizationUser, getFoldersController); 
 
-//app.get('/folder/:id', authorizationUser, isMyFolder, getSingleFolderController); TRABAJAR EN EL FUTURO
 app.get('/folder/:id', authorizationUser, getSingleFolderController);
-//app.delete('/folder/:id', authorizationUser, isMyFolder,  deleteFolderController); TRABAJAR EN EL FUTURO
 app.delete('/folder/:id', authorizationUser, deleteFolderController);
 
 //RUTAS DE FILES
 app.get('/files', getFilesController);
 app.post('/files', authorizationUser, newFileController);
-//app.get('/file/:id', authorizationUser, isMyFile, getSingleFileController); TRABAJAR EN EL FUTURO
 app.get('/file/:id', authorizationUser, getSingleFileController);
-//app.delete('/file/:id', authorizationUser, isMyFile, deleteFileController); TRABAJAR EN EL FUTURO
 app.delete('/file/:id', authorizationUser, deleteFileController);
 
 // Middleware 404 NOT FOUND

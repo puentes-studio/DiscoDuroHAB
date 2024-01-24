@@ -17,7 +17,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzAzMTU3Mzk3LCJleHAiOjE3MDU3NDkzOTd9.9jLXDHHCwgiqmFIT7OdoyVzI2cNWFWacg3lQU0nBBM4",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzA2MDkxNTA1LCJleHAiOjE3MDg2ODM1MDV9.MLkCIGVPT_OkENJ3EpKUqpN4NiL2WFslga-HVZgO6mM",
 								"type": "text"
 							}
 						],
@@ -52,7 +52,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzAzMTU3Mzk3LCJleHAiOjE3MDU3NDkzOTd9.9jLXDHHCwgiqmFIT7OdoyVzI2cNWFWacg3lQU0nBBM4",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzA2MDkxNTA1LCJleHAiOjE3MDg2ODM1MDV9.MLkCIGVPT_OkENJ3EpKUqpN4NiL2WFslga-HVZgO6mM",
 								"type": "text"
 							}
 						],
@@ -87,7 +87,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"user_name\": \"Fernando Alonso\",\r\n    \"email\": \"mastonmartin@gmail.com\",\r\n    \"password\": \"f12023\"\r\n    \r\n}",
+							"raw": "{\r\n    \"user_name\": \"Colin Mcrae\",\r\n    \"email\": \"subaruuuu@gmail.com\",\r\n    \"password\": \"rally90\"\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -115,7 +115,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"user_name\": \"Fernando Alonso\",\r\n    \"email\": \"astonmartin@gmail.com\",\r\n    \"password\": \"f120233\"\r\n    \r\n}",
+							"raw": "{\r\n    \"user_name\": \"Colin Mcrae\",\r\n    \"email\": \"subaru@gmail.com\",\r\n    \"password\": \"rally93\"\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -159,7 +159,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"user_name\": \"Fernando Alonso\",\n    \"email\": \"astonmartin@gmail.com\",\n    \"password\": \"f12023\"\n}",
+					"raw": "{\n    \"user_name\": \"Dani Sordo\",\n    \"email\": \"hyundai@gmail.com\",\n    \"password\": \"rally123\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -237,7 +237,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"astonmartin@gmail.com\",\r\n    \"password\": \"f12023\"\r\n}",
+					"raw": "{\r\n    \"email\": \"hyundai@gmail.com\",\r\n    \"password\": \"rally123\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -308,7 +308,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"astonmartin@gmail.com\"\r\n}",
+					"raw": "{\r\n    \"email\": \"hyundai@gmail.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -337,13 +337,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzAzMTU2MzY1LCJleHAiOjE3MDU3NDgzNjV9.aRC9k-bPdi5Wr_3Vzqiz39LMQ_HF-4ZPpOhtslhICZg",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzA2MDkxNDk2LCJleHAiOjE3MDg2ODM0OTZ9.47yx0R_q7a1OUsPLHSoBl8YJT8HOgAs3aEbrz72C1mE",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"folderName\": \"circuitos\"\r\n}",
+					"raw": "{\r\n    \"folderName\": \"Hyundai_I20_Monte_Carlo\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -371,13 +371,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzAzMTU3Mzk3LCJleHAiOjE3MDU3NDkzOTd9.9jLXDHHCwgiqmFIT7OdoyVzI2cNWFWacg3lQU0nBBM4",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzA2MDkxNTA1LCJleHAiOjE3MDg2ODM1MDV9.MLkCIGVPT_OkENJ3EpKUqpN4NiL2WFslga-HVZgO6mM",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"folderName\": \"etapas-rally\"\r\n}",
+					"raw": "{\r\n    \"folderName\": \"Etapas_Rally\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -405,7 +405,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzAzMTU2MzY1LCJleHAiOjE3MDU3NDgzNjV9.aRC9k-bPdi5Wr_3Vzqiz39LMQ_HF-4ZPpOhtslhICZg",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzA2MDkxNDk2LCJleHAiOjE3MDg2ODM0OTZ9.47yx0R_q7a1OUsPLHSoBl8YJT8HOgAs3aEbrz72C1mE",
 						"type": "text"
 					}
 				],
@@ -414,13 +414,53 @@
 					"formdata": [
 						{
 							"key": "folderId",
-							"value": "2",
+							"value": "1",
 							"type": "text"
 						},
 						{
 							"key": "fileToUpload",
 							"type": "file",
-							"src": "/C:/Users/gonza/Downloads/VSCODE-shortcuts-linux.pdf"
+							"src": "/C:/Users/gonza/Pictures/Hyundai-I20.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/files",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Subida File Usuario 1 Segundo Archivo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzA2MDkxNDk2LCJleHAiOjE3MDg2ODM0OTZ9.47yx0R_q7a1OUsPLHSoBl8YJT8HOgAs3aEbrz72C1mE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "folderId",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "fileToUpload",
+							"type": "file",
+							"src": "/C:/Users/gonza/Pictures/15-156154_laptop-sailor-jerry-iphone-background.jpg"
 						}
 					]
 				},
@@ -445,7 +485,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzAzMTU3Mzk3LCJleHAiOjE3MDU3NDkzOTd9.9jLXDHHCwgiqmFIT7OdoyVzI2cNWFWacg3lQU0nBBM4",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzA2MDkxNTA1LCJleHAiOjE3MDg2ODM1MDV9.MLkCIGVPT_OkENJ3EpKUqpN4NiL2WFslga-HVZgO6mM",
 						"type": "text"
 					}
 				],
@@ -454,13 +494,13 @@
 					"formdata": [
 						{
 							"key": "folderId",
-							"value": "4",
+							"value": "2",
 							"type": "text"
 						},
 						{
 							"key": "fileToUpload",
 							"type": "file",
-							"src": "/C:/Users/gonza/Downloads/SUBARU IMPREZA.jpg"
+							"src": "/C:/Users/gonza/Pictures/Subaru_Monte-Carlo_2005.jpg"
 						}
 					]
 				},
@@ -485,7 +525,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzAzMTU3Mzk3LCJleHAiOjE3MDU3NDkzOTd9.9jLXDHHCwgiqmFIT7OdoyVzI2cNWFWacg3lQU0nBBM4",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzA2MDkxNDk2LCJleHAiOjE3MDg2ODM0OTZ9.47yx0R_q7a1OUsPLHSoBl8YJT8HOgAs3aEbrz72C1mE",
 						"type": "text"
 					}
 				],
@@ -510,12 +550,12 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzAzMTU2MzY1LCJleHAiOjE3MDU3NDgzNjV9.aRC9k-bPdi5Wr_3Vzqiz39LMQ_HF-4ZPpOhtslhICZg",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzA2MDkxNDk2LCJleHAiOjE3MDg2ODM0OTZ9.47yx0R_q7a1OUsPLHSoBl8YJT8HOgAs3aEbrz72C1mE",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/1/renault_r25.webp",
+					"raw": "http://localhost:8080/1/1/Hyundai-I20.jpg",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -523,33 +563,8 @@
 					"port": "8080",
 					"path": [
 						"1",
-						"renault_r25.webp"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Borrar Carpeta",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzAzMTU2MzY1LCJleHAiOjE3MDU3NDgzNjV9.aRC9k-bPdi5Wr_3Vzqiz39LMQ_HF-4ZPpOhtslhICZg",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8080/folder/3",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"folder",
-						"3"
+						"1",
+						"Hyundai-I20.jpg"
 					]
 				}
 			},
@@ -562,8 +577,14 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzAzMTU2MzY1LCJleHAiOjE3MDU3NDgzNjV9.aRC9k-bPdi5Wr_3Vzqiz39LMQ_HF-4ZPpOhtslhICZg",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzA2MDkxNDk2LCJleHAiOjE3MDg2ODM0OTZ9.47yx0R_q7a1OUsPLHSoBl8YJT8HOgAs3aEbrz72C1mE",
 						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"url": {
@@ -576,6 +597,90 @@
 					"path": [
 						"file",
 						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar File por ID de File Usuario 2",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzA2MDkxNTA1LCJleHAiOjE3MDg2ODM1MDV9.MLkCIGVPT_OkENJ3EpKUqpN4NiL2WFslga-HVZgO6mM",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/file/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"file",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Carpeta Usuario 2 con archivos dentro",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzA2MDkxNTA1LCJleHAiOjE3MDg2ODM1MDV9.MLkCIGVPT_OkENJ3EpKUqpN4NiL2WFslga-HVZgO6mM",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/folder/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"folder",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Carpeta Vacía Usuario 2",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzA2MDkxNTA1LCJleHAiOjE3MDg2ODM1MDV9.MLkCIGVPT_OkENJ3EpKUqpN4NiL2WFslga-HVZgO6mM",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/folder/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"folder",
+						"2"
 					]
 				}
 			},

@@ -6,9 +6,6 @@ import {
   getFilesFromDatabase,
 } from "../db/filesDb.js";
 import { generateError } from "../helpers.js";
-import { authorizationUser } from "../middlewares/authorization.js";
-import fileUpload from "express-fileupload";
-import { fstat } from "fs";
 import fs from "fs/promises";
 
 const getFilesController = async (req, res, next) => {
@@ -65,8 +62,7 @@ const deleteFileController = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    // borrar file en uploads
-    // 1 obtener las info del file desde DB
+    //Borra FILE físicamente en uploeads. Obtener información de File.
     const dataFile = await getFileById(id);
 
     let pathFile;
@@ -88,7 +84,7 @@ const deleteFileController = async (req, res, next) => {
       );
     }
 
-    // borro file
+    //Borramos file
     await fs.unlink(pathFile);
 
     await deleteFileById(id);
