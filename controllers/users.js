@@ -32,6 +32,11 @@ const getUserController = async (req, res, next) => {
     try {
         
         const {id} = req.params;
+        //const token = req.userId;
+
+        //if (id !== token) {
+            //throw generateError("No tienes permiso para acceder a esta información", 403);
+        //}
 
         const user = await getUserById(id);
 
@@ -77,7 +82,10 @@ const loginController = async (req, res, next) => {
         
         res.send({
             status: 'ok',
-            data: token,
+            data: {token,
+               "user_name": user.user_name,
+                "email": user.email
+            },
         });
     } catch (error) {
         next(error);
