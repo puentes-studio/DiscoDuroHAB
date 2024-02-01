@@ -1,8 +1,10 @@
 PROYECTO 2: DISCO DURO ONLINE - HACK A BOSS BOOTCAMP - MOHA, SCARLETT, VLADIMIR Y GONZALO J.R.
 
-1- Iniciamos la DataBase en la terminal con "node db/initDb.js"
+1- Creamos manualmente una carpeta llamada "uploads" en la raíz del proyecto (no aparece inicialmente porque está en gitignore, la creación de esta carpeta permitirá que al registrarse un usuario se cree un espacio al que pueda subir files y folders.)
 
-2- Iniciamos la API y el servidor con "npm run dev"
+2- Iniciamos la DataBase en la terminal con "node db/initDb.js"
+
+3- Iniciamos la API y el servidor con "npm run dev"
 
 *****COLECCIÓN DE PETICIONES A POSTMAN EN LA CARPETA PETICIONES A POSTMAN EN LA RAÍZ DEL PROYECTO
 
