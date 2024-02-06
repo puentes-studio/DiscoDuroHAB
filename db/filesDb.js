@@ -3,16 +3,19 @@ import { generateError } from "../helpers.js";
 import path from "path";
 
 // Función para obtener todos los archivos de un usuario por su ID
-const getFilesFromDatabase = async (userId) => {
+const getFilesFromDatabase = async (userId, id_folder) => {
   try {
     let pool = await getPool();
 
-    const [result] = await pool.query(
-      `
-            SELECT id, user_id, file_name, folder_id FROM Files WHERE user_id = ?
-        `,
-      [userId]
-    );
+    let query = `SELECT id, user_id, file_name, folder_id FROM Files WHERE user_id = ?`
+    const prepQuery =   [userId]
+
+    if(id_folder){
+      query += " AND folder_id = ?"
+      prepQuery.push(parseInt(id_folder))
+    }
+
+    const [result] = await pool.query( query, prepQuery);
 
     return result;
   } catch (error) {

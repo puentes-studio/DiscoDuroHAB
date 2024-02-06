@@ -33,9 +33,14 @@ const newFileController = async (req, res, next) => {
 
     const id = await createFile(req.userId, fileObject, folderId);
 
+    const files = await getFilesFromDatabase(req.userId, folderId);
+
     res.send({
       status: "ok",
       message: `Nuevo archivo creado correctamente con id: ${id}`,
+      data:{
+        files
+      }
     });
   } catch (error) {
     next(error);

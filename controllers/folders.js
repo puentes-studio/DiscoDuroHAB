@@ -57,12 +57,17 @@ const getFoldersController = async (req, res, next) => { //Función que devuelve
 const getSingleFolderController = async (req, res, next) => { //Función que devuelve la carpeta creada de un usuario a través de su ID
     try {
         
-        const {id} = req.params;
-        const folder = await getFolderById(id);
+        const userId = req.userId;
+        const {id_folder} = req.params;
+        const folder = await getFolderById(id_folder);
+
+        const files = await getFilesFromDatabase(userId, id_folder);
 
         res.send({
             status: 'ok',
-            data: folder,
+            data: {
+                folder,
+                files}
         });
      } catch (error) {
         next(error);
