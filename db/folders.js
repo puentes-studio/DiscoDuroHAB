@@ -29,7 +29,7 @@ const getAllFoldersWithFiles = async (userId) => {
         //console.log(filesResult)
 
         return {
-            folder: foldersResult,
+            folders: foldersResult,
             files: filesResult,
         };
 

@@ -53,7 +53,18 @@ app.post('/login', loginController);
 //RUTAS DE FOLDERS
 app.post('/', authorizationUser, newFolderController); 
 app.get('/', authorizationUser, getFoldersController); 
-app.get('/folder/:id', authorizationUser, getSingleFolderController);
+
+
+
+
+app.get('/folder/:id_folder', authorizationUser, getSingleFolderController);
+
+
+
+
+
+
+
 app.delete('/folder/:id', authorizationUser, deleteFolderController);
 
 //RUTAS DE FILES
